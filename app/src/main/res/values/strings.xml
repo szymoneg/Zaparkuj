@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Zaparkuj</string>
+    <string name="login_prompt">Log in to your park it account!</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_stay_signed">Stay signed in!</string>
+    <string name="login_log_button">Log in!</string>
+    <string name="login_forgot">Forgot your password?</string>
+    <string name="login_no_acc">Don\'t have an account?</string>
+    <string name="login_sign">Sign up here!</string>
 </resources>

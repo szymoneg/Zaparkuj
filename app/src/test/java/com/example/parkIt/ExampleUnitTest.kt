@@ -1,4 +1,4 @@
-package com.example.zaparkuj
+package com.example.parkIt
 
 import org.junit.Test
 
