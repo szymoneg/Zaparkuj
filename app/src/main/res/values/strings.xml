@@ -1,11 +1,18 @@
 <resources>
-    <string name="app_name">Zaparkuj</string>
+    <string name="app_name">ParkIt</string>
     <string name="login_prompt">Log in to your park it account!</string>
+    <string name="register_prompt">Create your park it account!</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Confirm password</string>
     <string name="login_stay_signed">Stay signed in!</string>
+    <string name="register_agreement">Yes, I agree!</string>
+    <string name="register_create_button">Create!</string>
     <string name="login_log_button">Log in!</string>
     <string name="login_forgot">Forgot your password?</string>
     <string name="login_no_acc">Don\'t have an account?</string>
+    <string name="register_have_acc">Have an account?</string>
     <string name="login_sign">Sign up here!</string>
+    <string name="register_login">Log in here!</string>
+    <string name="register_tos">Terms of service</string>
 </resources>
