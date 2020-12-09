@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
-
+    tools:context=".ResetActivity">
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="217dp"
@@ -21,13 +20,14 @@
         app:srcCompat="@drawable/logo_park_sm" />
 
     <TextView
-        android:id="@+id/textViewLogPrompt"
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewResetPrompt"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="96dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/login_prompt"
+        android:text="@string/reset_prompt"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/editTextLogEmail"
+        android:id="@+id/editTextResetEmail"
         style="@style/input_form"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
@@ -46,90 +46,56 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLogPrompt" />
-
-    <EditText
-        android:id="@+id/editTextLogPassword"
-        style="@style/input_form"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints="@string/password_hint"
-        android:hint="@string/password_hint"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLogEmail" />
-
-    <CheckBox
-        android:id="@+id/checkBoxStaySigned"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/login_stay_signed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLogPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewResetPrompt" />
 
     <Button
-        android:id="@+id/buttonLogin"
+        android:id="@+id/buttonReset"
         style="@style/Button.Blue"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/login_log_button"
+        android:text="@string/reset_reset_button"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxStaySigned" />
-
-    <TextView
-        android:id="@+id/textViewForgot"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/login_forgot"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
-        style="@style/text_blue_link" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextResetEmail" />
 
     <View
-        android:id="@+id/divider1"
+        android:id="@+id/divider3"
         style="@style/Divider"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewContactSupport"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewForgot" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textViewNoAccount"
+        android:id="@+id/textViewContactSupport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/login_no_acc"
+        android:layout_marginBottom="8dp"
+        android:text="@string/reset_contact_view"
         android:textColor="@color/black"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewContactHere"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider1" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textViewSignUp"
+        android:id="@+id/textViewContactHere"
+        style="@style/text_blue_link"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/login_sign"
+        android:layout_marginBottom="125dp"
+        android:text="@string/reset_contact_link"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNoAccount"
-        style="@style/text_blue_link" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
