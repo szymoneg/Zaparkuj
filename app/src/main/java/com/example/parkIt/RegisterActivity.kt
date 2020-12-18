@@ -1,11 +1,16 @@
 package com.example.parkIt
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -18,6 +23,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var email: EditText
     private lateinit var password: EditText
     private lateinit var password2: EditText
+    private lateinit var agree: CheckBox
     private val mediaType = "application/json; charset=utf-8".toMediaType()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +32,7 @@ class RegisterActivity : AppCompatActivity() {
         email = findViewById(R.id.editTextRegEmail)
         password = findViewById(R.id.editTextRegPassword)
         password2 = findViewById(R.id.editTextRegPassword2)
+        agree = findViewById(R.id.checkBoxAgree)
 
         val button = findViewById<Button>(R.id.buttonCreate)
         button.setOnClickListener {
@@ -35,20 +42,25 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun checkRegValues(): Boolean {
         val reg = Regexes()
-        if (reg.checkMail(email.text.toString())) {
-            return if (password.text.toString() == password2.text.toString()) {
-                if (reg.checkPassword(password.text.toString())) {
-                    true;
+        if (agree.isChecked) {
+            if (reg.checkMail(email.text.toString())) {
+                return if (password.text.toString() == password2.text.toString()) {
+                    if (reg.checkPassword(password.text.toString())) {
+                        true;
+                    } else {
+                        password.error = "Password doesn't meet the requirements: Length: 8-32. Allowed special chars: ?.*@\\$!%#&"
+                        false;
+                    }
                 } else {
-                    password.error = "Password doesn't meet the requirements: Length: 8-32. Allowed special chars: ?.*@\\$!%#&"
+                    password2.error = "Passwords don't match";
                     false;
                 }
             } else {
-                password2.error = "Passwords don't match";
-                false;
+                email.error = "Incorrect email!"
+                return false;
             }
         } else {
-            email.error = "Incorrect email!"
+            agree.error = "Accept the ToS"
             return false;
         }
     }
@@ -60,7 +72,6 @@ class RegisterActivity : AppCompatActivity() {
             val url = "http://10.0.2.2:8080/register"
             val client = OkHttpClient()
             val rootObject = JSONObject()
-            rootObject.put("username", "Test")
             rootObject.put("password", password.toString())
             rootObject.put("email", email.toString())
 
@@ -75,6 +86,7 @@ class RegisterActivity : AppCompatActivity() {
                 override fun onResponse(call: Call, response: Response) {
                     Log.i("Response code: ", response.code.toString())
                     hideKey()
+                    goToLogin()
                 }
 
                 override fun onFailure(call: Call, e: IOException) {
@@ -84,6 +96,14 @@ class RegisterActivity : AppCompatActivity() {
         } else {
             Log.e("---Regex", "Wrong values")
         }
+    }
+
+    private fun goToLogin() {
+        Handler(Looper.getMainLooper()).post(Runnable {
+            Toast.makeText(applicationContext, "account crated!", Toast.LENGTH_SHORT).show()
+        })
+        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+        startActivity(intent)
     }
 
     private fun hideKey() {
