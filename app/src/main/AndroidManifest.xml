@@ -14,9 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ParkIt.NoActionBar">
         <activity android:name=".AddCar" />
-        <activity android:name=".UserSettingActivity">
-
-        </activity>
+        <activity android:name=".UserSettingActivity"/>
         <activity android:name=".ResetActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
