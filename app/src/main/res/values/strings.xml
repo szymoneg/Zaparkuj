@@ -33,5 +33,9 @@
     <string name="new_password_hint">New password</string>
     <string name="previous_password_hint">Previous password</string>
     <string name="change_password_button">Change password!</string>
+    <string name="add_car_button">Add car!</string>
+    <string name="car_hint">Car brand</string>
+    <string name="license_hint">License plate</string>
+    <string name="add_car_prompt">Add your car and it\'s license plate</string>
 
 </resources>

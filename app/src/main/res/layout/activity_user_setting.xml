@@ -7,8 +7,8 @@
     tools:context=".UserSettingActivity">
 
     <include
-        android:id="@+id/include"
-        layout="@layout/main_navbar" />
+        android:id="@+id/settings_nav"
+        layout="@layout/main_navbar"/>
 
     <EditText
         android:id="@+id/editTextSettingsName"
