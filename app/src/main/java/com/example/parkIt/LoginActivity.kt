@@ -1,11 +1,15 @@
 package com.example.parkIt
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.JsonParser
@@ -22,12 +26,6 @@ class LoginActivity : AppCompatActivity() {
     private val mediaType = "application/json; charset=utf-8".toMediaType()
     private lateinit var token: String;
 
-
-    //TODO sharedpreferences
-    private val PREF_NAME = "jwtToken"
-    val sharedPreferences: SharedPreferences = getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE)
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -38,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
         button.setOnClickListener {
             loggin()
             Thread.sleep(5000)
-            run()
+            goToMain()
         }
     }
 
@@ -56,13 +54,29 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call, response: Response) {
                 response.use {
-                    if (!response.isSuccessful) throw IOException("Unexpected code $response")
+                    if (!response.isSuccessful) {
+                        throw IOException("Unexpected code $response")
+                    }
 
-                    Log.i("Value","XDDD");
+                    Log.i("Value", "XDDD");
                 }
             }
         })
     }
+
+    private fun goToMain() {
+        val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
+        Handler(Looper.getMainLooper()).post(Runnable {
+            Toast.makeText(applicationContext, "login succesful!", Toast.LENGTH_SHORT).show()
+        })
+        val value = token;
+        val editor = sharedPreferences.edit()
+        editor.putString("Key",value)
+        editor.apply()
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        startActivity(intent)
+    }
+
 
     private fun loggin() {
         val email = email.text;
@@ -83,11 +97,15 @@ class LoginActivity : AppCompatActivity() {
 
         client.newCall(request).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
-                val json = Gson()
-                val value = json.fromJson(response.body?.string(),JwtTokenData::class.java)
-                //TODO zapisywanie value do sesji!
-                token = value.jwttoken;
-                Log.i("Response code: ", value.jwttoken)
+                if (response.code == 200) {
+                    val json = Gson()
+                    val value = json.fromJson(response.body?.string(), JwtTokenData::class.java)
+                    //TODO zapisywanie value do sesji!
+                    token = value.jwttoken;
+                    Log.i("Response code: ", value.jwttoken)
+                }else{
+                    Log.e("Logowanie:  ", response.code.toString())
+                }
             }
 
             override fun onFailure(call: Call, e: IOException) {
