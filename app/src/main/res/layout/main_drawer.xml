@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/best_blue"
+        android:src="@drawable/ic_portrait" />
+
+    <TextView
+        android:id="@+id/user_name_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/best_blue"
+        android:paddingBottom="12dp"
+        android:text="John Smith"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <View
+        style="@style/Divider"
+        android:layout_marginBottom="16dp"
+        android:background="#636363" />
+
+    <LinearLayout
+        style="@style/drawer_element"
+        android:onClick="clickHome">
+
+        <TextView
+            style="@style/drawer_element_text"
+            android:text="@string/drawer_home"
+            app:drawableStartCompat="@drawable/ic_home" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/drawer_element"
+        android:onClick="clickCars">
+
+        <TextView
+            style="@style/drawer_element_text"
+            android:text="@string/drawer_cars"
+            app:drawableStartCompat="@drawable/ic_car" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/drawer_element"
+        android:onClick="clickReserve">
+
+        <TextView
+            style="@style/drawer_element_text"
+            android:text="@string/drawer_reservations"
+            app:drawableStartCompat="@drawable/ic_reserv" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/drawer_element"
+        android:onClick="clickSettings">
+
+        <TextView
+            style="@style/drawer_element_text"
+            android:text="@string/drawer_settings"
+            app:drawableStartCompat="@drawable/ic_settings" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/drawer_element"
+        android:onClick="clickBack">
+
+        <TextView
+            style="@style/drawer_element_text"
+            android:text="@string/drawer_back"
+            app:drawableStartCompat="@drawable/ic_back" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/drawer_element"
+        android:layout_width="match_parent"
+        android:layout_weight="250"
+        android:gravity="bottom">
+
+        <TextView
+            style="@style/drawer_element_text"
+            android:onClick="clickAbout"
+            android:text="@string/drawer_about"
+            app:drawableStartCompat="@drawable/ic_about" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/drawer_element"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:gravity="bottom">
+
+        <TextView
+            style="@style/drawer_element_text"
+            android:onClick="clickLog"
+            android:text="@string/drawer_log_out"
+            app:drawableStartCompat="@drawable/ic_log_out" />
+    </LinearLayout>
+
+
+</LinearLayout>

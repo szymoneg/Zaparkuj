@@ -14,7 +14,6 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:contentDescription="logo"
-        android:rotationX="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,60 +37,39 @@
 
     <EditText
         android:id="@+id/editTextRegEmail"
-        android:layout_width="280dp"
-        android:layout_height="40dp"
+        style="@style/input_form"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:autofillHints="@string/email_hint"
-        android:background="@drawable/textinput_border"
-        android:ems="10"
         android:hint="@string/email_hint"
-        android:includeFontPadding="true"
         android:inputType="textEmailAddress"
-        android:padding="8sp"
-        android:singleLine="true"
-        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRegPrompt" />
 
     <EditText
         android:id="@+id/editTextRegPassword"
-        android:layout_width="280dp"
-        android:layout_height="40dp"
+        style="@style/input_form"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:autofillHints="@string/password_hint"
-        android:background="@drawable/textinput_border"
-        android:ems="10"
         android:hint="@string/password_hint"
-        android:includeFontPadding="true"
         android:inputType="textPassword"
-        android:padding="8sp"
-        android:singleLine="true"
-        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextRegEmail" />
 
     <EditText
         android:id="@+id/editTextRegPassword2"
-        android:layout_width="280dp"
-        android:layout_height="40dp"
+        style="@style/input_form"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:autofillHints="@string/password_hint"
-        android:background="@drawable/textinput_border"
-        android:ems="10"
         android:hint="@string/confirm_password_hint"
-        android:includeFontPadding="true"
         android:inputType="textPassword"
-        android:padding="8sp"
-        android:singleLine="true"
-        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextRegPassword" />
@@ -100,11 +78,11 @@
         android:id="@+id/textViewLicense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="64dp"
         android:text="@string/register_tos"
         android:textColor="@color/best_mid_blue"
-        app:layout_constraintStart_toEndOf="@+id/checkBoxAgree"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextRegPassword2" />
 
     <CheckBox
@@ -158,17 +136,13 @@
 
     <TextView
         android:id="@+id/textViewLogIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:clickable="true"
         android:text="@string/register_login"
-        android:textColor="@color/best_blue"
-        android:textColorLink="@color/best_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHaveAccount" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewHaveAccount"
+        style="@style/text_blue_link" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
