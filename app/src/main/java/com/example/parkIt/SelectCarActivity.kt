@@ -1,7 +1,10 @@
 package com.example.parkIt
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.cars_recycler.*
 
@@ -10,6 +13,16 @@ class SelectCarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cars_recycler)
         val exampleList = generateDummyList()
+
+        val navBar = findViewById<TextView>(R.id.action_bar_text);
+        navBar.text = "My cars"
+
+        val addCarButton = findViewById<ImageView>(R.id.add_car_plus)
+
+        addCarButton.setOnClickListener {
+            val intent = Intent(this@SelectCarActivity, AddCarActivity::class.java)
+            startActivity(intent)
+        }
 
         recycle_cars.adapter = CarsAdapter(exampleList)
         recycle_cars.layoutManager = LinearLayoutManager(this)

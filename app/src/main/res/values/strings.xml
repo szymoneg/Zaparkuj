@@ -28,7 +28,7 @@
     <string name="reset_contact_link">Contact here!</string>
     <string name="name_hint">Name</string>
     <string name="surname_hint">Surname</string>
-    <string name="action_bar">Screen</string>
+    <string name="action_bar">Add new car</string>
     <string name="set_data_button">Set your data!</string>
     <string name="new_password_hint">New password</string>
     <string name="previous_password_hint">Previous password</string>

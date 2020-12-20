@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -30,6 +31,10 @@ class UserSettingActivity : AppCompatActivity() {
         mail = findViewById(R.id.editTextSettingsEmail)
         firstName = findViewById(R.id.editTextSettingsName)
         lastName = findViewById(R.id.editTextSettingsSurname)
+
+        val navBar = findViewById<TextView>(R.id.action_bar_text);
+        navBar.text = "Settings"
+
 
         val sendNudes = findViewById<Button>(R.id.buttonSetData)
 
@@ -69,7 +74,7 @@ class UserSettingActivity : AppCompatActivity() {
                         val json = Gson()
                         val value = json.fromJson(response.body?.string(), Map::class.java);
                         runOnUiThread {
-                            firstName.setText(value.get("email").toString())
+                            firstName.setText(value.get("firstname").toString())
                             lastName.setText(value.get("lastname").toString())
                         }
                     } else {

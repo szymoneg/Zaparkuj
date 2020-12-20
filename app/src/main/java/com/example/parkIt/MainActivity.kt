@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun clickCars(view: View) {
         print("Navigating to: mycars")
-        val intent = Intent(this@MainActivity, AddCar::class.java)
+        val intent = Intent(this@MainActivity, SelectCarActivity::class.java)
         startActivity(intent)
         closeDrawer(drawerLayout)
     }

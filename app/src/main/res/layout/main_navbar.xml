@@ -13,9 +13,10 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_back_white"
             android:onClick="clickBack"/>
+
         <TextView
             android:id="@+id/action_bar_text"
             style="@style/nav_text"
             android:text="@string/action_bar"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
 </LinearLayout>
