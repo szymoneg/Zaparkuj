@@ -77,14 +77,14 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:text="@string/login_log_button"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxStaySigned" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewErorr" />
 
     <TextView
         android:id="@+id/textViewForgot"
@@ -127,9 +127,24 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:text="@string/login_sign"
+        android:onClick="clickAbout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNoAccount"
         style="@style/text_blue_link" />
+
+    <TextView
+        android:id="@+id/textViewErorr"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:text="Incorrect password or email!"
+        android:textColor="#D80C0C"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxStaySigned" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

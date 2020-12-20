@@ -14,22 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ParkIt.NoActionBar">
         <activity android:name=".SelectCarActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".AddCarActivity" />
         <activity android:name=".UserSettingActivity"></activity>
         <activity android:name=".ResetActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
+           <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>
