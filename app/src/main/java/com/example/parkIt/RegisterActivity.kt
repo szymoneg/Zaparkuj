@@ -6,11 +6,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -35,8 +33,15 @@ class RegisterActivity : AppCompatActivity() {
         agree = findViewById(R.id.checkBoxAgree)
 
         val button = findViewById<Button>(R.id.buttonCreate)
+        val logLabel = findViewById<TextView>(R.id.textViewLogIn)
+
         button.setOnClickListener {
             sendMessage()
+        }
+
+        logLabel.setOnClickListener{
+            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -117,4 +122,6 @@ class RegisterActivity : AppCompatActivity() {
             )
         }
     }
+
+    fun clickLog(view: View) {}
 }

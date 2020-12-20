@@ -7,16 +7,20 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
+import org.w3c.dom.Text
 import java.io.IOException
 
 
@@ -25,53 +29,38 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var password: EditText;
     private val mediaType = "application/json; charset=utf-8".toMediaType()
     private lateinit var token: String;
+    private lateinit var searchKey: String;
+    private lateinit var erorrText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         email = findViewById(R.id.editTextLogEmail)
         password = findViewById(R.id.editTextLogPassword)
+        erorrText = findViewById(R.id.textViewErorr)
 
         val button = findViewById<Button>(R.id.buttonLogin)
+        val regiseterLabel = findViewById<TextView>(R.id.textViewSignUp)
+
         button.setOnClickListener {
             loggin()
-            Thread.sleep(5000)
-            goToMain()
+            Thread.sleep(2000)
+        }
+
+        regiseterLabel.setOnClickListener {
+            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 
-    fun run() {
-        val client = OkHttpClient()
-        val request = Request.Builder()
-            .url("http://10.0.2.2:8080/hello")
-            .addHeader("Authorization", "Bearer $token")
-            .build()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                e.printStackTrace()
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                response.use {
-                    if (!response.isSuccessful) {
-                        throw IOException("Unexpected code $response")
-                    }
-
-                    Log.i("Value", "XDDD");
-                }
-            }
-        })
-    }
-
+    @Override
     private fun goToMain() {
         val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
-        Handler(Looper.getMainLooper()).post(Runnable {
-            Toast.makeText(applicationContext, "login succesful!", Toast.LENGTH_SHORT).show()
-        })
+        Toast.makeText(applicationContext, "login succesful!", Toast.LENGTH_SHORT).show()
         val value = token;
         val editor = sharedPreferences.edit()
         editor.putString("Key",value)
+        editor.putString("SearchKey",searchKey)
         editor.apply()
         val intent = Intent(this@LoginActivity, MainActivity::class.java)
         startActivity(intent)
@@ -100,10 +89,16 @@ class LoginActivity : AppCompatActivity() {
                 if (response.code == 200) {
                     val json = Gson()
                     val value = json.fromJson(response.body?.string(), JwtTokenData::class.java)
-                    //TODO zapisywanie value do sesji!
                     token = value.jwttoken;
-                    Log.i("Response code: ", value.jwttoken)
+                    searchKey = value.email;
+                    Log.i("Response code: ", searchKey)
+                    runOnUiThread {
+                        goToMain()
+                    }
                 }else{
+                    runOnUiThread {
+                        erorrText.visibility = View.VISIBLE;
+                    }
                     Log.e("Logowanie:  ", response.code.toString())
                 }
             }
