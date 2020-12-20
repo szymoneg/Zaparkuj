@@ -37,5 +37,8 @@
     <string name="car_hint">Car brand</string>
     <string name="license_hint">License plate</string>
     <string name="add_car_prompt">Add your car and it\'s license plate</string>
+    <string name="change_personal_prompt">Change your personal data</string>
+    <string name="change_password_prompt">Change your password</string>
+    <string name="recycle_car_add">Add a car</string>
 
 </resources>
