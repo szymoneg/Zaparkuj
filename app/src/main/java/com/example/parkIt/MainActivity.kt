@@ -4,28 +4,60 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
+import android.preference.PreferenceManager
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import org.osmdroid.config.Configuration
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.views.MapView
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var username: TextView
+    private var map: MapView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val ctx = applicationContext
+        Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
+
+        map = findViewById(R.id.map);
+        map?.run { setTileSource(TileSourceFactory.MAPNIK) }
+
         username = findViewById(R.id.user_name_drawer)
         val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
-        username.text = sharedPreferences.getString("SearchKey","XD").toString()
+        username.text = sharedPreferences.getString("SearchKey", "XD").toString()
         //Log.i("---Klucz:  ", sharedPreferences.getString("Key","XD").toString())
 
         drawerLayout = findViewById(R.id.drawer_layout)
     }
-    public fun clickMenu (view: View){
+
+    override fun onResume() {
+        super.onResume()
+        //this will refresh the osmdroid configuration on resuming.
+        //if you make changes to the configuration, use
+        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
+        map!!.onResume() //needed for compass, my location overlays, v6.0.0 and up
+    }
+
+    override fun onPause() {
+        super.onPause()
+        //this will refresh the osmdroid configuration on resuming.
+        //if you make changes to the configuration, use
+        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //Configuration.getInstance().save(this, prefs);
+        map!!.onPause() //needed for compass, my location overlays, v6.0.0 and up
+    }
+
+
+    public fun clickMenu(view: View){
         openDrawer(drawerLayout)
     }
 
