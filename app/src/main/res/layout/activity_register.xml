@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
+    <EditText
+        android:id="@+id/editTextRegUser"
+        style="@style/input_form"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints="@string/username_hint"
+        android:hint="@string/username_hint"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRegPrompt" />
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="217dp"
@@ -39,14 +54,14 @@
         android:id="@+id/editTextRegEmail"
         style="@style/input_form"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:autofillHints="@string/email_hint"
         android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegPrompt" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegUser" />
 
     <EditText
         android:id="@+id/editTextRegPassword"
@@ -136,14 +151,14 @@
 
     <TextView
         android:id="@+id/textViewLogIn"
+        style="@style/text_blue_link"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/register_login"
         android:onClick="clickLog"
+        android:text="@string/register_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHaveAccount"
-        style="@style/text_blue_link" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewHaveAccount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

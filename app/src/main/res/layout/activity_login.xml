@@ -36,13 +36,13 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/editTextLogEmail"
+        android:id="@+id/editTextLogUser"
         style="@style/input_form"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:autofillHints="@string/email_hint"
-        android:hint="@string/email_hint"
+        android:autofillHints="@string/username_hint"
+        android:hint="@string/username_hint"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLogEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLogUser" />
 
     <CheckBox
         android:id="@+id/checkBoxStaySigned"
