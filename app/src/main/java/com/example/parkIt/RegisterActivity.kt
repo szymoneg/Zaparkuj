@@ -18,6 +18,7 @@ import java.io.IOException
 
 
 class RegisterActivity : AppCompatActivity() {
+    private lateinit var username: EditText;
     private lateinit var email: EditText
     private lateinit var password: EditText
     private lateinit var password2: EditText
@@ -28,6 +29,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         email = findViewById(R.id.editTextRegEmail)
+        username = findViewById(R.id.editTextRegUser)
         password = findViewById(R.id.editTextRegPassword)
         password2 = findViewById(R.id.editTextRegPassword2)
         agree = findViewById(R.id.checkBoxAgree)
@@ -74,11 +76,13 @@ class RegisterActivity : AppCompatActivity() {
         if (checkRegValues()) {
             val email = email.text
             val password = password.text
+            val username = username.text
             val url = "http://10.0.2.2:8080/register"
             val client = OkHttpClient()
             val rootObject = JSONObject()
             rootObject.put("password", password.toString())
             rootObject.put("email", email.toString())
+            rootObject.put("username",username.toString())
 
             val body = rootObject.toString().toRequestBody(mediaType)
 

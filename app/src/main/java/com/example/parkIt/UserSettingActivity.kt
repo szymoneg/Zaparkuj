@@ -16,9 +16,11 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.IOException
 
+
+//TODO pole username
 class UserSettingActivity : AppCompatActivity() {
     private lateinit var jwtToken: String;
-    private lateinit var email: String;
+    private lateinit var username: String;
     private lateinit var firstName: EditText;
     private lateinit var lastName: EditText;
     private lateinit var mail: EditText;
@@ -44,7 +46,7 @@ class UserSettingActivity : AppCompatActivity() {
 
 
         val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
-        email = sharedPreferences.getString("SearchKey", "XD").toString()
+        username = sharedPreferences.getString("SearchKey", "XD").toString()
         jwtToken = sharedPreferences.getString("Key", "XD").toString()
         mail.setText(sharedPreferences.getString("SearchKey", "XD").toString());
         getUserData();
@@ -55,7 +57,7 @@ class UserSettingActivity : AppCompatActivity() {
     fun getUserData() {
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("http://10.0.2.2:8080/edit/$email")
+            .url("http://10.0.2.2:8080/edit/$username")
             .addHeader("Authorization", "Bearer $jwtToken")
             .build()
 
