@@ -5,14 +5,19 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.Marker
+import java.security.AccessController.getContext
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +33,25 @@ class MainActivity : AppCompatActivity() {
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
 
         map = findViewById(R.id.map);
-        map?.run { setTileSource(TileSourceFactory.MAPNIK) }
+        map?.setTileSource(TileSourceFactory.MAPNIK)
+
+        map?.setBuiltInZoomControls(true);
+        map?.setMultiTouchControls(true);
+
+        val mapController = map?.getController()
+        mapController?.setZoom(17)
+        val startPoint = GeoPoint(50.02009, 20.99191)
+        mapController?.setCenter(startPoint)
+
+        val startPoint1 = GeoPoint(50.0195, 20.99290)
+        val startMarker = Marker(map)
+        startMarker.position = startPoint1
+        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        map?.getOverlays()?.add(startMarker)
+        startMarker.setOnMarkerClickListener { marker, mapView ->
+            Log.i("XDD","XDD")
+            true
+        }
 
         username = findViewById(R.id.user_name_drawer)
         val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
@@ -36,6 +59,10 @@ class MainActivity : AppCompatActivity() {
         //Log.i("---Klucz:  ", sharedPreferences.getString("Key","XD").toString())
 
         drawerLayout = findViewById(R.id.drawer_layout)
+    }
+
+    fun showXD(){
+        Log.i("XDDD", "XDDD")
     }
 
     override fun onResume() {

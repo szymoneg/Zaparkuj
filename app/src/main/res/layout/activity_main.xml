@@ -17,9 +17,10 @@
             android:id="@+id/map"
             tilesource="Mapnik"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
+            android:layout_height="fill_parent">
 
-        <include layout="@layout/main_toolbar" />
+            <include layout="@layout/main_toolbar" />
+        </org.osmdroid.views.MapView>
 
 
     </LinearLayout>
@@ -28,8 +29,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@android:color/white">
-        <include
-            layout="@layout/main_drawer"/>
+
+        <include layout="@layout/main_drawer" />
     </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
