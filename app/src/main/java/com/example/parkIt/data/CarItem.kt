@@ -1,3 +1,8 @@
 package com.example.parkIt.data
 
-data class CarItem(val carBrand: String, val carModel: String, val license: String)
+data class CarItem(
+    val idCar: Integer,
+    val mark: String,
+    val model: String,
+    val licencePlate: String
+    )
