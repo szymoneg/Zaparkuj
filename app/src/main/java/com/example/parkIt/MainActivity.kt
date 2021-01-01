@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var username: TextView
     private lateinit var jwtToken: String;
+    private var idParking: String = "XD";
+    private var address: String = "XD";
     private var arrayList = ArrayList<OverlayItem>()
     private var map: MapView? = null
 
@@ -35,43 +37,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        val ctx = applicationContext
-        Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
-
-        map = findViewById(R.id.map);
-        map?.setTileSource(TileSourceFactory.MAPNIK)
-
-        map?.setBuiltInZoomControls(true);
-        map?.setMultiTouchControls(true);
-
-        val mapController = map?.getController()
-        mapController?.setZoom(17)
-        val startPoint = GeoPoint(50.02009, 20.99191)
-        mapController?.setCenter(startPoint)
-
-        getParkings()
-        Thread.sleep(2000)
-
-        val anotherItemizedIconOverlay = ItemizedIconOverlay<OverlayItem>(
-            this, arrayList, object : ItemizedIconOverlay.OnItemGestureListener<OverlayItem?> {
-                override fun onItemSingleTapUp(index: Int, item: OverlayItem?): Boolean {
-                    Log.i("XDD","Działa "+item?.snippet)
-                    return false
-                }
-
-                override fun onItemLongPress(index: Int, item: OverlayItem?): Boolean {
-                    return false
-                }
-            },
-        )
-        map?.getOverlays()?.add(anotherItemizedIconOverlay)
+        generateMap()
 
 
         username = findViewById(R.id.user_name_drawer)
         val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
         username.text = sharedPreferences.getString("SearchKey", "XD").toString()
         jwtToken = sharedPreferences.getString("Key", "XD").toString()
+        val editor = sharedPreferences.edit()
+        editor.putString("parking",idParking.toString())
+        editor.putString("address",address)
+        editor.apply()
 
         drawerLayout = findViewById(R.id.drawer_layout)
     }
@@ -123,22 +99,60 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    //Funkcje mapy
+    fun generateMap(){
+        val ctx = applicationContext
+        Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
+
+        map = findViewById(R.id.map);
+        map?.setTileSource(TileSourceFactory.MAPNIK)
+
+        map?.setBuiltInZoomControls(true);
+        map?.setMultiTouchControls(true);
+
+        val mapController = map?.getController()
+        mapController?.setZoom(17)
+        val startPoint = GeoPoint(50.02009, 20.99191)
+        mapController?.setCenter(startPoint)
+
+        getParkings()
+        Thread.sleep(2000)
+
+        val anotherItemizedIconOverlay = ItemizedIconOverlay<OverlayItem>(
+            this, arrayList, object : ItemizedIconOverlay.OnItemGestureListener<OverlayItem?> {
+                override fun onItemSingleTapUp(index: Int, item: OverlayItem?): Boolean {
+                    Log.i("XDD","Działa "+item?.snippet)
+                    saveValue(item?.title.toString(),item?.snippet.toString())
+                    return false
+                }
+
+                override fun onItemLongPress(index: Int, item: OverlayItem?): Boolean {
+                    saveValue(item?.title.toString(),item?.snippet.toString())
+                    return false
+                }
+            },
+        )
+        map?.getOverlays()?.add(anotherItemizedIconOverlay)
+
+    }
+
+    fun saveValue(address: String,idParking: String){
+        this.idParking = idParking;
+        this.address = address;
+    }
+
+
+
+    //Slide bar
+
     override fun onResume() {
         super.onResume()
-        //this will refresh the osmdroid configuration on resuming.
-        //if you make changes to the configuration, use
-        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        //Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
-        map!!.onResume() //needed for compass, my location overlays, v6.0.0 and up
+        map!!.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        //this will refresh the osmdroid configuration on resuming.
-        //if you make changes to the configuration, use
-        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        //Configuration.getInstance().save(this, prefs);
-        map!!.onPause() //needed for compass, my location overlays, v6.0.0 and up
+        map!!.onPause()
     }
 
 
