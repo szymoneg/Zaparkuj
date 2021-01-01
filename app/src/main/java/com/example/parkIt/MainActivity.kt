@@ -8,26 +8,33 @@ import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.parkIt.data.Parkings
+import com.google.gson.Gson
+import okhttp3.*
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.ItemizedIconOverlay
 import org.osmdroid.views.overlay.Marker
-import java.security.AccessController.getContext
+import org.osmdroid.views.overlay.OverlayItem
+import java.io.IOException
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var username: TextView
+    private lateinit var jwtToken: String;
+    private var arrayList = ArrayList<OverlayItem>()
     private var map: MapView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         val ctx = applicationContext
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
@@ -43,26 +50,77 @@ class MainActivity : AppCompatActivity() {
         val startPoint = GeoPoint(50.02009, 20.99191)
         mapController?.setCenter(startPoint)
 
-        val startPoint1 = GeoPoint(50.0195, 20.99290)
-        val startMarker = Marker(map)
-        startMarker.position = startPoint1
-        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-        map?.getOverlays()?.add(startMarker)
-        startMarker.setOnMarkerClickListener { marker, mapView ->
-            Log.i("XDD","XDD")
-            true
-        }
+        getParkings()
+        Thread.sleep(2000)
+
+        val anotherItemizedIconOverlay = ItemizedIconOverlay<OverlayItem>(
+            this, arrayList, object : ItemizedIconOverlay.OnItemGestureListener<OverlayItem?> {
+                override fun onItemSingleTapUp(index: Int, item: OverlayItem?): Boolean {
+                    Log.i("XDD","Działa "+item?.snippet)
+                    return false
+                }
+
+                override fun onItemLongPress(index: Int, item: OverlayItem?): Boolean {
+                    return false
+                }
+            },
+        )
+        map?.getOverlays()?.add(anotherItemizedIconOverlay)
+
 
         username = findViewById(R.id.user_name_drawer)
         val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
         username.text = sharedPreferences.getString("SearchKey", "XD").toString()
-        //Log.i("---Klucz:  ", sharedPreferences.getString("Key","XD").toString())
+        jwtToken = sharedPreferences.getString("Key", "XD").toString()
 
         drawerLayout = findViewById(R.id.drawer_layout)
     }
 
-    fun showXD(){
-        Log.i("XDDD", "XDDD")
+    fun getParkings() {
+        val client = OkHttpClient()
+        val request = Request.Builder()
+            .url("http://10.0.2.2:8080/parkings")
+            //.addHeader("Authorization", "Bearer $jwtToken")
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                e.printStackTrace()
+            }
+
+            // TODO: 20.12.2020 regex to do
+            override fun onResponse(call: Call, response: Response) {
+                response.use {
+                    if (!response.isSuccessful) {
+                        throw IOException("Unexpected code $response")
+                    }
+                    if (response.code == 200) {
+                        val datajson = response.body?.string();
+                        val gson = Gson();
+                        val enums: Array<Parkings> = gson.fromJson(
+                            datajson,
+                            Array<Parkings>::class.java
+                        )
+                        enums.map { data ->
+                            arrayList.add(
+                                OverlayItem(
+                                    data.idParking.toString(),
+                                    data.address,
+                                    GeoPoint(data.latitude, data.longitude)
+                                )
+                            )
+                        }
+                        runOnUiThread {
+                            Log.i("XDD", enums.get(1).address)
+                        }
+                    } else {
+                        Log.e("----Edit:", response.code.toString())
+                    }
+
+                    Log.i("Value", "XDDD");
+                }
+            }
+        })
     }
 
     override fun onResume() {
@@ -84,18 +142,20 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    public fun clickMenu(view: View){
+    public fun clickMenu(view: View) {
         openDrawer(drawerLayout)
     }
 
     private fun openDrawer(drawerLayout: DrawerLayout) {
         drawerLayout.openDrawer(GravityCompat.START)
     }
-    public fun clickBack(view: View){
+
+    public fun clickBack(view: View) {
         closeDrawer(drawerLayout)
     }
+
     private fun closeDrawer(drawerLayout: DrawerLayout) {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         }
     }
@@ -107,28 +167,33 @@ class MainActivity : AppCompatActivity() {
         startActivity(openURL)
         closeDrawer(drawerLayout)
     }
+
     fun clickLog(view: View) {
         print("Navigating to: logout")
         val intent = Intent(this@MainActivity, LoginActivity::class.java)
         startActivity(intent)
         closeDrawer(drawerLayout)
     }
+
     fun clickSettings(view: View) {
         print("Navigating to: settings")
         val intent = Intent(this@MainActivity, UserSettingActivity::class.java)
         startActivity(intent)
         closeDrawer(drawerLayout)
     }
+
     fun clickReserve(view: View) {
         print("Navigating to: reservations")
         closeDrawer(drawerLayout)
     }
+
     fun clickCars(view: View) {
         print("Navigating to: mycars")
         val intent = Intent(this@MainActivity, SelectCarActivity::class.java)
         startActivity(intent)
         closeDrawer(drawerLayout)
     }
+
     fun clickHome(view: View) {
         print("Navigating to: home")
         val intent = Intent(this@MainActivity, MainActivity::class.java)

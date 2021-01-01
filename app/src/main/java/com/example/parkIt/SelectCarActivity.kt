@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.parkIt.data.CarItem
 import kotlinx.android.synthetic.main.cars_recycler.*
 
 class SelectCarActivity : AppCompatActivity() {

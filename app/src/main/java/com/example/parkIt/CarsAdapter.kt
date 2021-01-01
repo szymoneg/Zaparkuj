@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.parkIt.data.CarItem
 import kotlinx.android.synthetic.main.cars_item.view.*
 
 class CarsAdapter(private val carList: List<CarItem>) : RecyclerView.Adapter<CarsAdapter.CarViewHolder>(){

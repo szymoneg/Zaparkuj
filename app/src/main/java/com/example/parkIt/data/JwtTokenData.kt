@@ -1,4 +1,4 @@
-package com.example.parkIt
+package com.example.parkIt.data
 
 data class JwtTokenData(
     val jwttoken: String,
