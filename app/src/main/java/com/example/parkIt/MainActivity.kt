@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
 
         generateMap()
 
-
         username = findViewById(R.id.user_name_drawer)
         val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
         username.text = sharedPreferences.getString("SearchKey", "XD").toString()

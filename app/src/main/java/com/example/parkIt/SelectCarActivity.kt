@@ -52,12 +52,12 @@ class SelectCarActivity : AppCompatActivity() {
         val list = ArrayList<CarItem>()
 
 
-        list += CarItem("Citroen Berlingo", "KBR1234")
-        list += CarItem("Fiat Multipla", "KTE20301")
-        list += CarItem("Mazda Xd", "KT213231")
-        list += CarItem("Fiat Punto", "KR23100")
-        list += CarItem("Opel Astra", "KL2130")
-        list += CarItem("Toyota Rav 3", "KBR3124")
+        list += CarItem("Citroen", "Berlingo", "KBR1234")
+        list += CarItem("Fiat", "Multipla", "KTE20301")
+        list += CarItem("Mazda", "Xd", "KT213231")
+        list += CarItem("Fiat", "Punto", "KR23100")
+        list += CarItem("Opel", "Astra", "KL2130")
+        list += CarItem("Toyota", "Rav 3", "KBR3124")
 
         return list
     }

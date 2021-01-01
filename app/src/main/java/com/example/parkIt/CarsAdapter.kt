@@ -19,7 +19,8 @@ class CarsAdapter(private val carList: List<CarItem>) : RecyclerView.Adapter<Car
     override fun onBindViewHolder(holder: CarViewHolder, position: Int) {
         val currentItem = carList[position]
 
-        holder.car.text = currentItem.car
+        holder.carBrand.text = currentItem.carBrand
+        holder.carModel.text = currentItem.carModel
         holder.license.text = currentItem.license
         holder.image.setImageResource(R.drawable.ic_settings)
     }
@@ -27,7 +28,8 @@ class CarsAdapter(private val carList: List<CarItem>) : RecyclerView.Adapter<Car
     override fun getItemCount() = carList.size
 
     class CarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val car : TextView = itemView.textCar
+        val carBrand : TextView = itemView.textCarBrand
+        val carModel : TextView = itemView.textCarModel
         val license : TextView = itemView.textLicense
         val image : ImageView = itemView.imageSettings
     }

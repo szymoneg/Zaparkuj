@@ -60,7 +60,7 @@
         android:layout_marginEnd="32dp"
         android:autofillHints="@string/license_hint"
         android:hint="@string/license_hint"
-        android:inputType="textPassword"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,7 @@
         android:layout_marginEnd="32dp"
         android:autofillHints="@string/model_hint"
         android:hint="@string/model_hint"
-        android:inputType="textPassword"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAddCarBrand" />
