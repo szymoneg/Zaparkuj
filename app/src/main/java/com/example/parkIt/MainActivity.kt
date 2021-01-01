@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
 
         map = findViewById(R.id.map);
         map?.setTileSource(TileSourceFactory.MAPNIK)
-
         map?.setBuiltInZoomControls(true);
         map?.setMultiTouchControls(true);
 
