@@ -17,8 +17,8 @@
         android:roundIcon="@drawable/logo_park_sm"
         android:supportsRtl="true"
         android:theme="@style/Theme.ParkIt.NoActionBar">
-        <activity android:name=".SelectCarActivity">
-        </activity>
+        <activity android:name=".ReservationsViewActivity" />
+        <activity android:name=".SelectCarActivity" />
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan">
