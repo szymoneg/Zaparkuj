@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <include
-        android:id="@+id/add_car_nav"
+        android:id="@+id/select_car_nav"
         layout="@layout/main_navbar" />
 
     <ImageView
@@ -18,7 +18,7 @@
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_car_nav" />
+        app:layout_constraintTop_toBottomOf="@+id/select_car_nav" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/recycle_cars"
         app:layout_constraintEnd_toStartOf="@+id/add_car_plus"
-        app:layout_constraintTop_toBottomOf="@+id/add_car_nav" />
+        app:layout_constraintTop_toBottomOf="@+id/select_car_nav" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_cars"
