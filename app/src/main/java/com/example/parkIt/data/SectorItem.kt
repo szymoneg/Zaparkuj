@@ -1,4 +1,6 @@
 package com.example.parkIt.data
 
-class SectorItem {
-}
+data class SectorItem(
+    val sectorId: String,
+    val availableSpot: String,
+)
