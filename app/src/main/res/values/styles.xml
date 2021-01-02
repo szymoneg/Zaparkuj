@@ -46,4 +46,23 @@
         <item name="android:textColor">@color/best_blue</item>
         <item name="android:textColorLink">@color/best_blue</item>
     </style>
+
+    <style name="button_available">
+        <item name="android:clickable">true</item>
+        <item name="android:backgroundTint">@drawable/btn_available</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontWeight">700</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="button_occupied">
+        <item name="android:clickable">false</item>
+        <item name="android:backgroundTint">@drawable/btn_occupied</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontWeight">700</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
 </resources>

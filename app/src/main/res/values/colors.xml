@@ -8,6 +8,12 @@
     <color name="best_blue">#1061d4</color>
     <color name="best_mid_blue">#0045c0</color>
     <color name="best_drk_blue">#0038a2</color>
+    <color name="green_press">#75D466</color>
+    <color name="green_highlight">#4bd636</color>
+    <color name="green_back">#1ab800</color>
+    <color name="green_border">#159400</color>
+    <color name="red_back">#e4463f</color>
+    <color name="red_border">#b73833</color>
 
 <!--   garbage in case it crashes <color name="purple_200">#FFBB86FC</color>-->
 <!--    <color name="purple_500">#FF6200EE</color>-->
