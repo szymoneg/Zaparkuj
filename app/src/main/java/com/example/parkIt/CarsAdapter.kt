@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.parkIt.data.CarItem
 import kotlinx.android.synthetic.main.cars_item.view.*
 
-class CarsAdapter(private val carList: List<CarItem>) : RecyclerView.Adapter<CarsAdapter.CarViewHolder>(){
+class CarsAdapter(private val carList: Array<CarItem>) : RecyclerView.Adapter<CarsAdapter.CarViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cars_item, parent, false)
@@ -19,9 +19,9 @@ class CarsAdapter(private val carList: List<CarItem>) : RecyclerView.Adapter<Car
     override fun onBindViewHolder(holder: CarViewHolder, position: Int) {
         val currentItem = carList[position]
 
-        holder.carBrand.text = currentItem.carBrand
-        holder.carModel.text = currentItem.carModel
-        holder.license.text = currentItem.license
+        holder.carBrand.text = currentItem.mark
+        holder.carModel.text = currentItem.model
+        holder.license.text = currentItem.licencePlate
         holder.image.setImageResource(R.drawable.ic_settings)
     }
 
