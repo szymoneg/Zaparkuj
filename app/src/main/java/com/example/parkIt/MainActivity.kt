@@ -183,6 +183,8 @@ class MainActivity : AppCompatActivity() {
 
     fun clickReserve(view: View) {
         print("Navigating to: reservations")
+        val intent = Intent(this@MainActivity, ReservationsViewActivity::class.java)
+        startActivity(intent)
         closeDrawer(drawerLayout)
     }
 

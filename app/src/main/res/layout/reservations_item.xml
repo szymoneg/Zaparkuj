@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="8dp"
+    android:paddingBottom="4dp">
+
+    <ImageView
+        android:id="@+id/imageRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_remove"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textIdReservation"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="021J"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/textLicense"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="ul. Jana Pawła 2"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/imageRemove"
+        app:layout_constraintStart_toEndOf="@+id/textIdReservation"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textCarBrandRes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="CarBrand"
+        app:layout_constraintStart_toEndOf="@+id/textIdReservation"
+        app:layout_constraintTop_toBottomOf="@+id/textAddress" />
+
+    <TextView
+        android:id="@+id/textLicenseRes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:text="LicensePlate"
+        app:layout_constraintStart_toEndOf="@+id/textCarBrandRes"
+        app:layout_constraintTop_toBottomOf="@+id/textAddress" />
+
+    <TextView
+        android:id="@+id/textDateEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="8dp"
+        android:text="ReservationEnd"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageRemove"
+        app:layout_constraintTop_toBottomOf="@+id/textAddress" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
