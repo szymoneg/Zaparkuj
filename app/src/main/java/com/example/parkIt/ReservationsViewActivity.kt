@@ -1,36 +1,95 @@
 package com.example.parkIt
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parkIt.data.CarItem
 import com.example.parkIt.data.ReservationItem
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.cars_recycler.*
 import kotlinx.android.synthetic.main.cars_recycler.recycle_cars
 import kotlinx.android.synthetic.main.reservations_recycler.*
+import okhttp3.*
+import java.io.IOException
 
 class ReservationsViewActivity : AppCompatActivity() {
+    private lateinit var username: String;
+    private lateinit var jwtToken: String;
+    private lateinit var arrReservations: Array<ReservationItem>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.reservations_recycler)
         val navBar = findViewById<TextView>(R.id.action_bar_text);
         navBar.text = "Reservations"
 
-        val exampleList = generateDummyList()
+        val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
+        username = sharedPreferences.getString("SearchKey","XD").toString();
+        jwtToken = sharedPreferences.getString("Key","XD").toString();
+
+
+        getReservations()
+        Thread.sleep(1000)
+
+        val exampleList = arrReservations;
         recycle_reservation.adapter = ReservationsAdapter(exampleList)
         recycle_reservation.layoutManager = LinearLayoutManager(this)
         recycle_reservation.setHasFixedSize(true)
     }
 
-    private fun generateDummyList(): List<ReservationItem> {
-        val list = ArrayList<ReservationItem>()
+    fun getReservations(){
+        val client = OkHttpClient()
+        val request = Request.Builder()
+            .url("http://10.0.2.2:8080/reservation/user/$username")
+            //.addHeader("Authorization", "Bearer $jwtToken")
+            .build()
 
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                e.printStackTrace()
+            }
 
-        list += ReservationItem("021J", "Tarnow ul. krakowska 10","Citroen", "KBR1234", "03.01.2021T17:30")
-        list += ReservationItem("023W", "Tarnow ul. krakowska 11","Citroen", "KBR1334", "07.01.2021T17:30")
-        list += ReservationItem("021X", "Tarnow ul. krakowska 12","Mazda", "KBR1534", "05.01.2021T17:30")
+            // TODO: 20.12.2020 regex to do
+            override fun onResponse(call: Call, response: Response) {
+                response.use {
+                    if (!response.isSuccessful) {
+                        throw IOException("Unexpected code $response")
+                    }
+                    if (response.code == 200) {
+                        Log.i("No działą! ", "XDDD")
+                        val dataJson = response.body?.string();
+                        val gson = Gson()
+                        val enums: Array<ReservationItem> = gson.fromJson(
+                            dataJson,
+                            Array<ReservationItem>::class.java
+                        )
+                        runOnUiThread {
+                            Log.i("XDD", enums.get(1).carMark)
+                        }
+                        arrReservations = enums;
+                    } else {
+                        Log.e("----Edit:", response.code.toString())
+                    }
 
-        return list
+                    Log.i("Value", "XDDD");
+                }
+            }
+        })
     }
+
+//    private fun generateDummyList(): List<ReservationItem> {
+//        val list = ArrayList<ReservationItem>()
+//
+//
+//        list += ReservationItem("021J", "Tarnow ul. krakowska 10","Citroen", "KBR1234", "03.01.2021T17:30")
+//        list += ReservationItem("023W", "Tarnow ul. krakowska 11","Citroen", "KBR1334", "07.01.2021T17:30")
+//        list += ReservationItem("021X", "Tarnow ul. krakowska 12","Mazda", "KBR1534", "05.01.2021T17:30")
+//
+//        return list
+//    }
+
+
 }
