@@ -20,6 +20,7 @@ import java.io.IOException
 class SelectCarActivity : AppCompatActivity() {
     private lateinit var username: String;
     private lateinit var jwtToken: String;
+    private lateinit var arrCars: Array<CarItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +29,10 @@ class SelectCarActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
         username = sharedPreferences.getString("SearchKey","XD").toString();
         jwtToken = sharedPreferences.getString("Key","XD").toString();
+        Log.i("username: ", username)
 
         getCars()
-
-        val exampleList = generateDummyList()
+        Thread.sleep(1000)
 
         val navBar = findViewById<TextView>(R.id.action_bar_text);
         navBar.text = "My cars"
@@ -43,23 +44,9 @@ class SelectCarActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        recycle_cars.adapter = CarsAdapter(exampleList)
+        recycle_cars.adapter = CarsAdapter(arrCars)
         recycle_cars.layoutManager = LinearLayoutManager(this)
         recycle_cars.setHasFixedSize(true)
-    }
-
-    private fun generateDummyList(): List<CarItem> {
-        val list = ArrayList<CarItem>()
-
-
-        list += CarItem("Citroen", "Berlingo", "KBR1234")
-        list += CarItem("Fiat", "Multipla", "KTE20301")
-        list += CarItem("Mazda", "Xd", "KT213231")
-        list += CarItem("Fiat", "Punto", "KR23100")
-        list += CarItem("Opel", "Astra", "KL2130")
-        list += CarItem("Toyota", "Rav 3", "KBR3124")
-
-        return list
     }
 
     fun getCars() {
@@ -82,6 +69,16 @@ class SelectCarActivity : AppCompatActivity() {
                     }
                     if (response.code == 200) {
                         Log.i("No działą! ", "XDDD")
+                        val dataJson = response.body?.string();
+                        val gson = Gson()
+                        val enums: Array<CarItem> = gson.fromJson(
+                            dataJson,
+                            Array<CarItem>::class.java
+                        )
+                        runOnUiThread {
+                            Log.i("XDD", enums.get(1).mark)
+                        }
+                        arrCars = enums;
                     } else {
                         Log.e("----Edit:", response.code.toString())
                     }

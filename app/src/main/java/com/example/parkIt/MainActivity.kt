@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         username.text = sharedPreferences.getString("SearchKey", "XD").toString()
         jwtToken = sharedPreferences.getString("Key", "XD").toString()
         val editor = sharedPreferences.edit()
-        editor.putString("parking",idParking.toString())
+        editor.putString("parking",idParking)
         editor.putString("address",address)
         editor.apply()
 
