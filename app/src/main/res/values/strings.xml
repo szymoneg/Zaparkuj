@@ -42,5 +42,7 @@
     <string name="recycle_car_add">Add a car</string>
     <string name="username_hint">Username</string>
     <string name="model_hint">Model</string>
+    <string name="date_select_car">Select your car</string>
+    <string name="date_select_date">Select reservation date</string>
 
 </resources>
