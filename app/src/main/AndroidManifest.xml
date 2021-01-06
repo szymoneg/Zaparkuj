@@ -17,23 +17,24 @@
         android:roundIcon="@drawable/logo_park_sm"
         android:supportsRtl="true"
         android:theme="@style/Theme.ParkIt.NoActionBar">
-        <activity android:name=".SelectSectorActivity"></activity>
+        <activity android:name=".SelectSpotActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SelectDateActivity"></activity>
+        <activity android:name=".SelectSectorActivity" />
         <activity android:name=".ReservationsViewActivity" />
         <activity android:name=".SelectCarActivity" />
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".AddCarActivity" />
         <activity android:name=".UserSettingActivity" />
         <activity android:name=".ResetActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".LoginActivity" />
     </application>
 
 </manifest>

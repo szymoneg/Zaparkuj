@@ -6,4 +6,172 @@
     android:layout_height="match_parent"
     tools:context=".SelectDateActivity">
 
+    <include
+        android:id="@+id/date_nav"
+        layout="@layout/main_navbar" />
+
+    <TextView
+        android:id="@+id/textSelectCar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/date_select_car"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_nav" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        style="@style/dateImage"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewTimeTo"
+        app:layout_constraintTop_toTopOf="@+id/textViewTimeTo"
+        app:srcCompat="@drawable/ic_clock" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        style="@style/dateImage"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewDateTo"
+        app:layout_constraintTop_toTopOf="@+id/textViewDateTo"
+        app:srcCompat="@drawable/ic_calendar" />
+
+    <Button
+        android:id="@+id/btnPickDateTo"
+        style="@style/btnDate"
+        android:text="@string/res_btn_pick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDateTo" />
+
+    <TextView
+        android:id="@+id/textViewTimeTo"
+        style="@style/viewDateTime"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="80dp"
+        android:text="12:00"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPickDateFrom" />
+
+    <TextView
+        android:id="@+id/textViewDateTo"
+        style="@style/viewDateTime"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="44dp"
+        android:text="03/01/2021"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPickDateFrom" />
+
+    <TextView
+        android:id="@+id/textFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="4dp"
+        android:text="From:"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewDateFrom" />
+
+
+
+    <Spinner
+        android:id="@+id/carSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSelectCar" />
+
+    <Button
+        android:id="@+id/buttonCheck"
+        style="@style/Button.Blue"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/res_btn_check_sectors"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPickDateTo" />
+
+    <TextView
+        android:id="@+id/textTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="4dp"
+        android:text="To:"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewDateTo" />
+
+    <TextView
+        android:id="@+id/textSelectDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/date_select_date"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carSpinner" />
+
+    <TextView
+        android:id="@+id/textViewDateFrom"
+        style="@style/viewDateTime"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="32dp"
+        android:text="03/01/2021"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSelectDate" />
+
+    <TextView
+        android:id="@+id/textViewTimeFrom"
+        style="@style/viewDateTime"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="80dp"
+        android:text="12:00"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSelectDate" />
+
+    <Button
+        android:id="@+id/btnPickDateFrom"
+        style="@style/btnDate"
+        android:text="@string/res_btn_pick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDateFrom" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        style="@style/dateImage"
+        android:layout_marginStart="8dp"
+
+        app:layout_constraintStart_toEndOf="@+id/textViewTimeFrom"
+        app:layout_constraintTop_toTopOf="@+id/textViewTimeFrom"
+        app:srcCompat="@drawable/ic_clock" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        style="@style/dateImage"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewDateFrom"
+        app:layout_constraintTop_toTopOf="@+id/textViewDateFrom"
+        app:srcCompat="@drawable/ic_calendar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
