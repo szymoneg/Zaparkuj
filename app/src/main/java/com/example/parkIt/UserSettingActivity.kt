@@ -24,6 +24,9 @@ class UserSettingActivity : AppCompatActivity() {
     private lateinit var firstName: EditText;
     private lateinit var lastName: EditText;
     private lateinit var mail: EditText;
+    private lateinit var oldPassword: EditText;
+    private lateinit var password: EditText;
+    private lateinit var password2: EditText;
     private val mediaType = "application/json; charset=utf-8".toMediaType()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,12 +36,20 @@ class UserSettingActivity : AppCompatActivity() {
         mail = findViewById(R.id.editTextSettingsEmail)
         firstName = findViewById(R.id.editTextSettingsName)
         lastName = findViewById(R.id.editTextSettingsSurname)
+        oldPassword = findViewById(R.id.editTextSettingsPrevPassword)
+        password = findViewById(R.id.editTextSettingsNewPassword)
+        password2 = findViewById(R.id.editTextSettingsConfirmPassword)
 
         val navBar = findViewById<TextView>(R.id.action_bar_text);
         navBar.text = "Settings"
 
 
         val sendNudes = findViewById<Button>(R.id.buttonSetData)
+        val sendPassword = findViewById<Button>(R.id.buttonSetPassword)
+
+        sendPassword.setOnClickListener {
+            postChangePassword()
+        }
 
         sendNudes.setOnClickListener {
             postUserData()
@@ -87,6 +98,13 @@ class UserSettingActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+
+    //TODO zmiana hasla
+    fun postChangePassword(){
+        val oldPassword = oldPassword
+        val newPassword = password
     }
 
     fun postUserData(){

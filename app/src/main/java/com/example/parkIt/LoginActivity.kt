@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parkIt.data.JwtTokenData
 import com.google.gson.Gson
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -39,7 +41,6 @@ class LoginActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             loggin()
-            Thread.sleep(2000)
         }
 
         regiseterLabel.setOnClickListener {
@@ -62,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    private fun loggin() {
+    private fun loggin() = GlobalScope.async{
         val username = username.text;
         val password = password.text
         val url = "http://10.0.2.2:8080/login"

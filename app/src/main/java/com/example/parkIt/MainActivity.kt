@@ -13,22 +13,28 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.parkIt.data.Parkings
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers.Default
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import okhttp3.*
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.ItemizedIconOverlay
-import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.OverlayItem
 import java.io.IOException
+import kotlinx.coroutines.*
+import kotlin.system.measureTimeMillis
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var username: TextView
     private lateinit var jwtToken: String;
-//    private lateinit var idParking: String
+
+    //    private lateinit var idParking: String
 //    private lateinit var address: String
     private var arrayList = ArrayList<OverlayItem>()
     private var map: MapView? = null
@@ -37,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        generateMap()
+        getParkings()
         Thread.sleep(1000)
 
         val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
@@ -48,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
     }
 
-    fun getParkings() {
+    fun getParkings(){
         val client = OkHttpClient()
         val request = Request.Builder()
             .url("http://10.0.2.2:8080/parkings")
@@ -86,6 +92,7 @@ class MainActivity : AppCompatActivity() {
                         runOnUiThread {
                             Log.i("XDD", enums.get(1).address)
                         }
+                        generateMap()
                     } else {
                         Log.e("----Edit:", response.code.toString())
                     }
@@ -97,7 +104,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Funkcje mapy
-    fun generateMap(){
+    fun generateMap() {
         val ctx = applicationContext
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
 
@@ -112,21 +119,20 @@ class MainActivity : AppCompatActivity() {
         val startPoint = GeoPoint(50.02009, 20.99191)
         mapController?.setCenter(startPoint)
 
-        getParkings()
-        Thread.sleep(1000)
 
         val anotherItemizedIconOverlay = ItemizedIconOverlay<OverlayItem>(
-            this, arrayList, object : ItemizedIconOverlay.OnItemGestureListener<OverlayItem?> {
+            this, arrayList,
+            object : ItemizedIconOverlay.OnItemGestureListener<OverlayItem?> {
                 override fun onItemSingleTapUp(index: Int, item: OverlayItem?): Boolean {
-                    Log.i("XDD","Działa "+item?.snippet)
-                    saveValue(item?.title.toString(),item?.snippet.toString())
+                    Log.i("XDD", "Działa " + item?.snippet)
+                    saveValue(item?.title.toString(), item?.snippet.toString())
                     val intent = Intent(this@MainActivity, SelectSectorActivity::class.java)
                     startActivity(intent)
                     return false
                 }
 
                 override fun onItemLongPress(index: Int, item: OverlayItem?): Boolean {
-                    saveValue(item?.title.toString(),item?.snippet.toString())
+                    saveValue(item?.title.toString(), item?.snippet.toString())
                     val intent = Intent(this@MainActivity, SelectSectorActivity::class.java)
                     startActivity(intent)
                     return false
@@ -137,14 +143,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun saveValue(idParking: String,address: String){
+    fun saveValue(idParking: String, address: String) {
         val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        editor.putString("parking",idParking)
-        editor.putString("address",address)
+        editor.putString("parking", idParking)
+        editor.putString("address", address)
         editor.apply()
     }
-
 
 
     //Slide bar

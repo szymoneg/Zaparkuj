@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parkIt.data.ReservationItem
 import kotlinx.android.synthetic.main.reservations_item.view.*
+import java.security.Timestamp
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -22,15 +23,17 @@ class ReservationsAdapter(private val reservationList: Array<ReservationItem>) :
     }
 
     override fun onBindViewHolder(holder: ReservationViewHolder, position: Int) {
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         val currentItem = reservationList[position]
+
+        val sdf = SimpleDateFormat("dd-MM-yy hh:mm")
+        val netDate = Date(currentItem.dateEnd.time)
+        val date = sdf.format(netDate)
 
         holder.idReservation.text = currentItem.placeName
         holder.address.text = currentItem.parkingAddress
         holder.carBrand.text = currentItem.carMark
         holder.license.text = currentItem.licencePlate
-        //holder.dateEnd.text = LocalDate.parse(Date.parse(currentItem.dateEnd.toString()).toString(),formatter).toString();
-        holder.dateEnd.text = currentItem.dateEnd.toString()
+        holder.dateEnd.text = date
     }
 
     override fun getItemCount() = reservationList.size
