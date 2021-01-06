@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var username: TextView
     private lateinit var jwtToken: String;
-    private var idParking: String = "XD";
-    private var address: String = "XD";
+//    private lateinit var idParking: String
+//    private lateinit var address: String
     private var arrayList = ArrayList<OverlayItem>()
     private var map: MapView? = null
 
@@ -38,15 +38,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         generateMap()
+        Thread.sleep(1000)
 
-        username = findViewById(R.id.user_name_drawer)
         val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
+        username = findViewById(R.id.user_name_drawer)
         username.text = sharedPreferences.getString("SearchKey", "XD").toString()
         jwtToken = sharedPreferences.getString("Key", "XD").toString()
-        val editor = sharedPreferences.edit()
-        editor.putString("parking",idParking)
-        editor.putString("address",address)
-        editor.apply()
 
         drawerLayout = findViewById(R.id.drawer_layout)
     }
@@ -84,6 +81,7 @@ class MainActivity : AppCompatActivity() {
                                     GeoPoint(data.latitude, data.longitude)
                                 )
                             )
+
                         }
                         runOnUiThread {
                             Log.i("XDD", enums.get(1).address)
@@ -115,18 +113,22 @@ class MainActivity : AppCompatActivity() {
         mapController?.setCenter(startPoint)
 
         getParkings()
-        Thread.sleep(2000)
+        Thread.sleep(1000)
 
         val anotherItemizedIconOverlay = ItemizedIconOverlay<OverlayItem>(
             this, arrayList, object : ItemizedIconOverlay.OnItemGestureListener<OverlayItem?> {
                 override fun onItemSingleTapUp(index: Int, item: OverlayItem?): Boolean {
                     Log.i("XDD","Działa "+item?.snippet)
                     saveValue(item?.title.toString(),item?.snippet.toString())
+                    val intent = Intent(this@MainActivity, SelectSectorActivity::class.java)
+                    startActivity(intent)
                     return false
                 }
 
                 override fun onItemLongPress(index: Int, item: OverlayItem?): Boolean {
                     saveValue(item?.title.toString(),item?.snippet.toString())
+                    val intent = Intent(this@MainActivity, SelectSectorActivity::class.java)
+                    startActivity(intent)
                     return false
                 }
             },
@@ -135,9 +137,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun saveValue(address: String,idParking: String){
-        this.idParking = idParking;
-        this.address = address;
+    fun saveValue(idParking: String,address: String){
+        val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("parking",idParking)
+        editor.putString("address",address)
+        editor.apply()
     }
 
 
