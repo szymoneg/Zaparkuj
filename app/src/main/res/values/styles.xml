@@ -32,7 +32,7 @@
     <style name="input_form">
         <item name="android:layout_width">280dp</item>
         <item name="android:layout_height">40dp</item>
-        <item name="android:background">@drawable/textinput_border</item>
+        <item name="android:background">@drawable/text_input_border</item>
         <item name="android:includeFontPadding">true</item>
         <item name="android:padding">8sp</item>
         <item name="android:singleLine">true</item>
@@ -49,7 +49,7 @@
 
     <style name="button_available">
         <item name="android:clickable">true</item>
-        <item name="android:backgroundTint">@drawable/btn_available</item>
+        <item name="android:backgroundTint">@color/green_back</item>
         <item name="android:textSize">28sp</item>
         <item name="android:fontWeight">700</item>
         <item name="android:layout_height">60dp</item>
@@ -58,7 +58,7 @@
 
     <style name="button_occupied">
         <item name="android:clickable">false</item>
-        <item name="android:backgroundTint">@drawable/btn_occupied</item>
+        <item name="android:backgroundTint">@color/red_back</item>
         <item name="android:textSize">28sp</item>
         <item name="android:fontWeight">700</item>
         <item name="android:layout_height">60dp</item>
@@ -77,7 +77,7 @@
     <style name="viewDateTime">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/textinput_border</item>
+        <item name="android:background">@drawable/text_input_border</item>
         <item name="android:gravity">center</item>
         <item name="android:padding">4dp</item>
         <item name="android:textSize">16sp</item>

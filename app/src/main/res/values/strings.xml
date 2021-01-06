@@ -44,5 +44,7 @@
     <string name="model_hint">Model</string>
     <string name="date_select_car">Select your car</string>
     <string name="date_select_date">Select reservation date</string>
+    <string name="res_btn_check_sectors">Check sectors!</string>
+    <string name="res_btn_pick">Pick date and time</string>
 
 </resources>
