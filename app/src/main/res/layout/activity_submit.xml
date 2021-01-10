@@ -7,73 +7,13 @@
     tools:context=".SubmitActivity">
 
     <TextView
-        android:id="@+id/textSub4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="24dp"
-        android:text="End:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSub3" />
-
-    <TextView
-        android:id="@+id/textViewSubEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="24dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSubStart" />
-
-    <TextView
-        android:id="@+id/textSub3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="24dp"
-        android:text="Start:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSub2" />
-
-    <TextView
-        android:id="@+id/textViewSubStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="24dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSubSpot" />
-
-    <TextView
-        android:id="@+id/textSub1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="48dp"
-        android:text="Car:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSubmit" />
-
-    <TextView
-        android:id="@+id/textViewSubCar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="48dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSubmit" />
-
-    <TextView
         android:id="@+id/textViewSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
-        android:text="Submit your reservation"
+        android:text="@string/submit_title"
         android:textColor="@color/black"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,22 +21,92 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textSub2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="24dp"
-        android:text="Spot:"
+        android:id="@+id/textViewSubCar"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="60dp"
+        android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSub1" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSubmit"
+        style="@style/submit_text" />
+
+    <TextView
+        android:id="@+id/textSub1"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="60dp"
+        android:text="Car:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSubmit"
+        style="@style/submit_text" />
 
     <TextView
         android:id="@+id/textViewSubSpot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="108dp"
         android:layout_marginTop="24dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSubCar" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSubCar"
+        style="@style/submit_text" />
+
+    <TextView
+        android:id="@+id/textSub2"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:text="Spot:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSub1"
+        style="@style/submit_text" />
+
+    <TextView
+        android:id="@+id/textSub3"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:text="Start:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSub2"
+        style="@style/submit_text" />
+
+    <TextView
+        android:id="@+id/textViewSubStart"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSubSpot"
+        style="@style/submit_text" />
+
+    <TextView
+        android:id="@+id/textSub4"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:text="End:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSub3"
+        style="@style/submit_text" />
+
+    <TextView
+        android:id="@+id/textViewSubEnd"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSubStart"
+        style="@style/submit_text" />
+
+    <Button
+        android:id="@+id/buttonParkIt"
+        android:layout_marginTop="64dp"
+        android:text="@string/btn_submit_park_it"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSub4"
+        style="@style/btn_sub_and_cancel" />
+
+    <Button
+        android:id="@+id/buttonCancel"
+        android:layout_marginTop="32dp"
+        android:text="@string/btn_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonParkIt"
+        style="@style/btn_sub_and_cancel" />
 </androidx.constraintlayout.widget.ConstraintLayout>
