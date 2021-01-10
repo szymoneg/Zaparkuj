@@ -81,14 +81,4 @@ class SelectSpotActivity : AppCompatActivity() {
             }
         })
     }
-
-//    private fun generateDummyList(): List<SpotItem> {
-//        val list = ArrayList<SpotItem>()
-//        list += SpotItem("01", true)
-//        list += SpotItem("02", true)
-//        list += SpotItem("03", false)
-//        list += SpotItem("04", false)
-//        list += SpotItem("05", true)
-//        return list
-//    }
 }
