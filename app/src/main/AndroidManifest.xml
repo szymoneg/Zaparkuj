@@ -18,10 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ParkIt.NoActionBar">
         <activity android:name=".SelectSpotActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".SelectDateActivity"></activity>
         <activity android:name=".SelectSectorActivity" />
@@ -34,7 +31,12 @@
         <activity android:name=".UserSettingActivity" />
         <activity android:name=".ResetActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

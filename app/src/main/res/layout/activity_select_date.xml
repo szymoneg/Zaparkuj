@@ -53,7 +53,6 @@
         style="@style/viewDateTime"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="80dp"
-        android:text="12:00"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPickDateFrom" />
 
@@ -62,7 +61,6 @@
         style="@style/viewDateTime"
         android:layout_marginStart="80dp"
         android:layout_marginTop="44dp"
-        android:text="03/01/2021"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPickDateFrom" />
 
@@ -136,7 +134,6 @@
         style="@style/viewDateTime"
         android:layout_marginStart="80dp"
         android:layout_marginTop="32dp"
-        android:text="03/01/2021"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSelectDate" />
 
@@ -145,7 +142,6 @@
         style="@style/viewDateTime"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="80dp"
-        android:text="12:00"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSelectDate" />
 

@@ -126,14 +126,14 @@ class MainActivity : AppCompatActivity() {
                 override fun onItemSingleTapUp(index: Int, item: OverlayItem?): Boolean {
                     Log.i("XDD", "Działa " + item?.snippet)
                     saveValue(item?.title.toString(), item?.snippet.toString())
-                    val intent = Intent(this@MainActivity, SelectSectorActivity::class.java)
+                    val intent = Intent(this@MainActivity, SelectDateActivity::class.java)
                     startActivity(intent)
                     return false
                 }
 
                 override fun onItemLongPress(index: Int, item: OverlayItem?): Boolean {
                     saveValue(item?.title.toString(), item?.snippet.toString())
-                    val intent = Intent(this@MainActivity, SelectSectorActivity::class.java)
+                    val intent = Intent(this@MainActivity, SelectDateActivity::class.java)
                     startActivity(intent)
                     return false
                 }
