@@ -1,5 +1,6 @@
 package com.example.parkIt
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -10,11 +11,23 @@ import kotlinx.android.synthetic.main.reservations_recycler.*
 import kotlinx.android.synthetic.main.sectors_recycler.*
 
 class SelectSectorActivity : AppCompatActivity() {
+    private lateinit var username: String
+    private lateinit var jwtToken: String
+    private lateinit var idParking: String
+    private lateinit var address: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sectors_recycler)
         val navBar = findViewById<TextView>(R.id.action_bar_text);
-        navBar.text = "Nazwa Ulicy" //TODO zmieniac po klikniecu na mapie
+
+        val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
+        username = sharedPreferences.getString("SearchKey","XD").toString();
+        jwtToken = sharedPreferences.getString("Key","XD").toString();
+        idParking = sharedPreferences.getString("parking","XD").toString()
+        address = sharedPreferences.getString("address","XD").toString()
+
+        navBar.text = address
 
         val exampleList = generateDummyList()
         recycle_sector.adapter = SectorsAdapter(exampleList)

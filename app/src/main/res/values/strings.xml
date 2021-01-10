@@ -46,5 +46,6 @@
     <string name="date_select_date">Select reservation date</string>
     <string name="res_btn_check_sectors">Check sectors!</string>
     <string name="res_btn_pick">Pick date and time</string>
+    <string name="set_password_button">Change your password!</string>
 
 </resources>
