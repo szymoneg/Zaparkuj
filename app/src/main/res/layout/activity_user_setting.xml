@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".UserSettingActivity">
 
+    <include
+        android:id="@+id/settings_nav"
+        layout="@layout/main_navbar" />
+
     <TextView
         android:id="@+id/textViewChangePassword"
         android:layout_width="wrap_content"
@@ -70,9 +74,6 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <include
-        android:id="@+id/settings_nav"
-        layout="@layout/main_navbar" />
 
 
     <EditText

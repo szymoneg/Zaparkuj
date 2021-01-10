@@ -32,7 +32,7 @@
     <style name="input_form">
         <item name="android:layout_width">280dp</item>
         <item name="android:layout_height">40dp</item>
-        <item name="android:background">@drawable/textinput_border</item>
+        <item name="android:background">@drawable/text_input_border</item>
         <item name="android:includeFontPadding">true</item>
         <item name="android:padding">8sp</item>
         <item name="android:singleLine">true</item>
@@ -46,4 +46,47 @@
         <item name="android:textColor">@color/best_blue</item>
         <item name="android:textColorLink">@color/best_blue</item>
     </style>
+
+    <style name="button_available">
+        <item name="android:clickable">true</item>
+        <item name="android:backgroundTint">@color/green_back</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontWeight">700</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="button_occupied">
+        <item name="android:clickable">false</item>
+        <item name="android:backgroundTint">@color/red_back</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontWeight">700</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="btnDate">
+        <item name="android:layout_width">180dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginVertical">32dp</item>
+    </style>
+
+    <style name="viewDateTime">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/text_input_border</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="dateImage">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">2dp</item>
+    </style>
+
 </resources>
