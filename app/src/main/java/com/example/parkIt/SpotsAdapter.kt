@@ -1,6 +1,7 @@
 package com.example.parkIt
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,8 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.parkIt.data.SpotItem
 import kotlinx.android.synthetic.main.spot_item.view.*
 
-class SpotsAdapter(private val spotList: List<SpotItem>) :
+class SpotsAdapter(private val spotList: List<SpotItem>, context: Context) :
     RecyclerView.Adapter<SpotsAdapter.SpotViewHolder>() {
+    val sharedPreferences = context.getSharedPreferences("SP", Context.MODE_PRIVATE)
 
     val colW =  Color.parseColor("#ffffff")
     val colB = Color.parseColor("#000000")
@@ -37,9 +39,13 @@ class SpotsAdapter(private val spotList: List<SpotItem>) :
             holder.spotBtn.backgroundTintList =
                 ContextCompat.getColorStateList(holder.spotBtn.context, R.color.green_back)
             holder.spotBtn.setTextColor(colB)
-            holder.spotBtn.setOnClickListener {
+            holder.spotBtn.setOnClickListener { v ->
                 Log.i("Kod ", spotList[position].placeName)
-                //TODO XDD
+                val editor = sharedPreferences.edit()
+                editor.putInt("spotPlace",spotList[position].idPlace)
+                editor.apply()
+                val intent = Intent(v.context, SelectSpotActivity::class.java)
+                v.context.startActivity(intent)
             }
         }
         holder.spotBtn.text = currentItem.placeName

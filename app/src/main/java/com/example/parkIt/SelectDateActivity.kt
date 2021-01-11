@@ -74,6 +74,8 @@ class SelectDateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         address = sharedPreferences.getString("address", "XD").toString()
         idParking = sharedPreferences.getString("parking", "XD").toString()
 
+        val spinner = findViewById<Spinner>(R.id.carSpinner);
+
         Thread.sleep(500)
 
         navBar.text = address;
@@ -124,6 +126,7 @@ class SelectDateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             editor.putString("Sectors", arrSectors)
             editor.putString("start",dateStart.toString())
             editor.putString("end",dateEndoo.toString())
+            editor.putString("car",arrCars[spinner.selectedItemId.toInt()].idCar.toString())
             editor.apply()
 
             val intent = Intent(this@SelectDateActivity, SelectSectorActivity::class.java)

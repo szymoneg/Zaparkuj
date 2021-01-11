@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.parkIt.data.CarItem
 import com.example.parkIt.data.SpotItem
@@ -28,6 +29,9 @@ class SelectSpotActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.spots_recycler)
 
+        val navBar = findViewById<TextView>(R.id.action_bar_text);
+        navBar.text = "Parking places"
+
         val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
         jwtToken = sharedPreferences.getString("SearchKey","XD").toString()
         dateBegin = sharedPreferences.getString("start","XD").toString()
@@ -38,7 +42,7 @@ class SelectSpotActivity : AppCompatActivity() {
         Thread.sleep(500)
 
         val exampleList = arrSpots
-        recycle_spot.adapter = SpotsAdapter(exampleList.toList())
+        recycle_spot.adapter = SpotsAdapter(exampleList.toList(),this)
         recycle_spot.layoutManager = GridLayoutManager(this, 2)
         recycle_spot.setHasFixedSize(true)
     }
