@@ -1,6 +1,4 @@
-package com.example.parkIt
-
-import android.util.Log
+package com.example.parkIt.utilities
 
 class Regexes {
     private val mailPattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\\.[a-zA-Z.]{2,18}".toRegex()

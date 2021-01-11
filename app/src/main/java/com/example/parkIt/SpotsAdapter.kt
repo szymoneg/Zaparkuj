@@ -43,8 +43,9 @@ class SpotsAdapter(private val spotList: List<SpotItem>, context: Context) :
                 Log.i("Kod ", spotList[position].placeName)
                 val editor = sharedPreferences.edit()
                 editor.putInt("spotPlace",spotList[position].idPlace)
+                editor.putString("spotName",spotList[position].placeName)
                 editor.apply()
-                val intent = Intent(v.context, SelectSpotActivity::class.java)
+                val intent = Intent(v.context, SubmitActivity::class.java)
                 v.context.startActivity(intent)
             }
         }

@@ -126,7 +126,10 @@ class SelectDateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             editor.putString("Sectors", arrSectors)
             editor.putString("start",dateStart.toString())
             editor.putString("end",dateEndoo.toString())
-            editor.putString("car",arrCars[spinner.selectedItemId.toInt()].idCar.toString())
+            editor.putInt("car",arrCars[spinner.selectedItemId.toInt()].idCar.toInt())
+            editor.putString("carName","${arrCars[spinner.selectedItemId.toInt()].mark} " +
+                    "${arrCars[spinner.selectedItemId.toInt()].model} " +
+                    "${arrCars[spinner.selectedItemId.toInt()].licencePlate} ")
             editor.apply()
 
             val intent = Intent(this@SelectDateActivity, SelectSectorActivity::class.java)
