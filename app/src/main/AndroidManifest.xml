@@ -17,10 +17,10 @@
         android:roundIcon="@drawable/logo_park_sm"
         android:supportsRtl="true"
         android:theme="@style/Theme.ParkIt.NoActionBar">
+        <activity android:name=".SubmitActivity"></activity>
         <activity android:name=".SelectSpotActivity">
-
         </activity>
-        <activity android:name=".SelectDateActivity"></activity>
+        <activity android:name=".SelectDateActivity" />
         <activity android:name=".SelectSectorActivity" />
         <activity android:name=".ReservationsViewActivity" />
         <activity android:name=".SelectCarActivity" />

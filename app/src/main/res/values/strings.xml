@@ -47,5 +47,7 @@
     <string name="res_btn_check_sectors">Check sectors!</string>
     <string name="res_btn_pick">Pick date and time</string>
     <string name="set_password_button">Change your password!</string>
-
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_submit_park_it">Park it!</string>
+    <string name="submit_title">Submit your reservation</string>
 </resources>
