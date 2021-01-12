@@ -76,6 +76,7 @@ class SelectDateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
 
         val spinner = findViewById<Spinner>(R.id.carSpinner);
 
+        //TODO sleep
         Thread.sleep(500)
 
         navBar.text = address;
@@ -118,6 +119,7 @@ class SelectDateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             Log.i("----newDo", dateEndoo.toString());
             sendMessage(idParking.toInt(),dateStart,dateEndoo);
 
+            //TODO sleep
             Thread.sleep(200);
 
             val json = Gson()

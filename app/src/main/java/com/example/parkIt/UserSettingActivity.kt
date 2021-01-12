@@ -61,10 +61,10 @@ class UserSettingActivity : AppCompatActivity() {
         jwtToken = sharedPreferences.getString("Key", "XD").toString()
         mail.setText(sharedPreferences.getString("SearchKey", "XD").toString());
         getUserData();
-
-        //Log.i("---Klucz:  ", sharedPreferences.getString("SearchKey","XD").toString())
     }
 
+
+    //TODO regex
     fun getUserData() {
         val client = OkHttpClient()
         val request = Request.Builder()
@@ -93,8 +93,6 @@ class UserSettingActivity : AppCompatActivity() {
                     } else {
                         Log.e("----Edit:", response.code.toString())
                     }
-
-                    Log.i("Value", "XDDD");
                 }
             }
         })

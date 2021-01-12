@@ -89,15 +89,10 @@ class MainActivity : AppCompatActivity() {
                             )
 
                         }
-                        runOnUiThread {
-                            Log.i("XDD", enums.get(1).address)
-                        }
                         generateMap()
                     } else {
-                        Log.e("----Edit:", response.code.toString())
+                        Log.e("----Error:", response.code.toString())
                     }
-
-                    Log.i("Value", "XDDD");
                 }
             }
         })

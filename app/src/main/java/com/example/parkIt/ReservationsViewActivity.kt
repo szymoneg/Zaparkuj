@@ -35,6 +35,8 @@ class ReservationsViewActivity : AppCompatActivity() {
         jwtToken = sharedPreferences.getString("Key","XD").toString();
 
         getReservations()
+
+        //TODO sleep
         Thread.sleep(1000)
 
         val exampleList = arrReservations;
@@ -42,6 +44,7 @@ class ReservationsViewActivity : AppCompatActivity() {
         recycle_reservation.layoutManager = LinearLayoutManager(this)
         recycle_reservation.setHasFixedSize(true)
     }
+
 
 
      fun getReservations(){
@@ -77,8 +80,6 @@ class ReservationsViewActivity : AppCompatActivity() {
                     } else {
                         Log.e("----Edit:", response.code.toString())
                     }
-
-                    Log.i("Value", "XDDD");
                 }
             }
         })

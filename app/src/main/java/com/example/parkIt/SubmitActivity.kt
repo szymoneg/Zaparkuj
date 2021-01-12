@@ -3,12 +3,20 @@ package com.example.parkIt
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
 import android.widget.TextView
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
 import org.w3c.dom.Text
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
 class SubmitActivity : AppCompatActivity() {
+    private val mediaType = "application/json; charset=utf-8".toMediaType()
     private lateinit var jwtToken: String
     private var idPlace: Int = 0
     private var idCar: Int = 0
@@ -21,6 +29,8 @@ class SubmitActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_submit)
+
+        val submitBtn = findViewById<Button>(R.id.buttonParkIt)
 
         val carNameView = findViewById<TextView>(R.id.textViewSubCar)
         val spotNameView = findViewById<TextView>(R.id.textViewSubSpot)
@@ -53,9 +63,36 @@ class SubmitActivity : AppCompatActivity() {
 
         dateStartView.text = dateStarte
         dateEndView.text = dateEndoo
+
+        submitBtn.setOnClickListener {
+            sendReservation()
+        }
     }
 
     fun sendReservation(){
+        val url = "http://10.0.2.2:8080/reservation/add"
+        val client = OkHttpClient()
+        val rootObject = JSONObject()
+        rootObject.put("idPlace",idPlace)
+        rootObject.put("idCar",idCar)
+        rootObject.put("dateBegin",dateBegin)
+        rootObject.put("dateEnd",dateEnd)
 
+        val body = rootObject.toString().toRequestBody(mediaType)
+
+        val request = Request.Builder()
+            .url(url)
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                Log.i("Response code: ", response.code.toString())
+            }
+
+            override fun onFailure(call: Call, e: IOException) {
+                print(e.printStackTrace())
+            }
+        })
     }
 }

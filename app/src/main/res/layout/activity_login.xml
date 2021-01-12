@@ -88,14 +88,15 @@
 
     <TextView
         android:id="@+id/textViewForgot"
+        style="@style/text_blue_link"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:clickable="true"
         android:text="@string/login_forgot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
-        style="@style/text_blue_link" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
 
     <View
         android:id="@+id/divider1"

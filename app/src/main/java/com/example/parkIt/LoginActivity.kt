@@ -38,9 +38,15 @@ class LoginActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.buttonLogin)
         val regiseterLabel = findViewById<TextView>(R.id.textViewSignUp)
+        val forgot = findViewById<TextView>(R.id.textViewForgot)
 
         button.setOnClickListener {
             loggin()
+        }
+
+        forgot.setOnClickListener {
+            val intent = Intent(this@LoginActivity, ResetActivity::class.java)
+            startActivity(intent)
         }
 
         regiseterLabel.setOnClickListener {

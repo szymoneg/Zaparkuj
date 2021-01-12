@@ -32,6 +32,8 @@ class SelectCarActivity : AppCompatActivity() {
         Log.i("username: ", username)
 
         getCars()
+
+        //TODO do usuniecia sleep
         Thread.sleep(1000)
 
         val navBar = findViewById<TextView>(R.id.action_bar_text);
@@ -68,22 +70,16 @@ class SelectCarActivity : AppCompatActivity() {
                         throw IOException("Unexpected code $response")
                     }
                     if (response.code == 200) {
-                        Log.i("No działą! ", "XDDD")
                         val dataJson = response.body?.string();
                         val gson = Gson()
                         val enums: Array<CarItem> = gson.fromJson(
                             dataJson,
                             Array<CarItem>::class.java
                         )
-                        runOnUiThread {
-                            Log.i("XDD", enums.get(1).mark)
-                        }
                         arrCars = enums;
                     } else {
                         Log.e("----Edit:", response.code.toString())
                     }
-
-                    Log.i("Value", "XDDD");
                 }
             }
         })

@@ -39,6 +39,7 @@ class SelectSpotActivity : AppCompatActivity() {
         idSector = sharedPreferences.getInt("SectorID",2137)
 
         sendMessage(idSector, dateBegin, dateEnd)
+        //TODO sleep
         Thread.sleep(500)
 
         val exampleList = arrSpots

@@ -3,9 +3,11 @@ package com.example.parkIt
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parkIt.data.ReservationItem
+import com.example.parkIt.web.ConnectionAPI
 import kotlinx.android.synthetic.main.reservations_item.view.*
 import java.security.Timestamp
 import java.text.SimpleDateFormat
@@ -24,6 +26,7 @@ class ReservationsAdapter(private val reservationList: Array<ReservationItem>) :
 
     override fun onBindViewHolder(holder: ReservationViewHolder, position: Int) {
         val currentItem = reservationList[position]
+        val conn: ConnectionAPI = ConnectionAPI()
 
         val sdf = SimpleDateFormat("dd-MM-yy hh:mm")
         val netDate = Date(currentItem.dateEnd.time)
@@ -34,6 +37,16 @@ class ReservationsAdapter(private val reservationList: Array<ReservationItem>) :
         holder.carBrand.text = currentItem.carMark
         holder.license.text = currentItem.licencePlate
         holder.dateEnd.text = date
+        holder.image.setImageResource(R.drawable.ic_remove)
+
+        holder.image.setOnClickListener {
+            conn.deleteReservation(reservationList[position].idReservation)
+            //TODO do usunieca sleep
+            Thread.sleep(500)
+            //TODO odswiezanie rezerwacji
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, getItemCount());
+        }
     }
 
     override fun getItemCount() = reservationList.size
@@ -44,6 +57,7 @@ class ReservationsAdapter(private val reservationList: Array<ReservationItem>) :
         val carBrand: TextView = itemView.textCarBrandRes
         val license: TextView = itemView.textLicenseRes
         val dateEnd: TextView = itemView.textDateEnd
+        val image: ImageView = itemView.imageRemove
     }
 
 }

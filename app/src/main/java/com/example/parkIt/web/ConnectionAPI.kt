@@ -51,4 +51,24 @@ class ConnectionAPI {
         return carList;
     }
 
+    fun deleteReservation(idReservation: Int){
+        val url = "http://10.0.2.2:8080/deletereservation/$idReservation"
+        val client = OkHttpClient()
+
+        val request = Request.Builder()
+            .url(url)
+            .delete()
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                Log.i("Response code: ", response.code.toString())
+            }
+
+            override fun onFailure(call: Call, e: IOException) {
+                print(e.printStackTrace())
+            }
+        })
+    }
+
 }
