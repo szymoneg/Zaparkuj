@@ -14,7 +14,6 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:contentDescription="logo"
-        android:rotationX="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,44 +36,30 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/editTextLogEmail"
-        android:layout_width="280dp"
-        android:layout_height="40dp"
+        android:id="@+id/editTextLogUser"
+        style="@style/input_form"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:autofillHints="@string/email_hint"
-        android:background="@drawable/textinput_border"
-        android:ems="10"
-        android:hint="@string/email_hint"
-        android:includeFontPadding="true"
-        android:inputType="textEmailAddress"
-        android:padding="8sp"
-        android:singleLine="true"
-        android:textSize="14sp"
+        android:autofillHints="@string/username_hint"
+        android:hint="@string/username_hint"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLogPrompt" />
 
     <EditText
         android:id="@+id/editTextLogPassword"
-        android:layout_width="280dp"
-        android:layout_height="40dp"
+        style="@style/input_form"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:autofillHints="@string/password_hint"
-        android:background="@drawable/textinput_border"
-        android:ems="10"
         android:hint="@string/password_hint"
-        android:includeFontPadding="true"
         android:inputType="textPassword"
-        android:padding="8sp"
-        android:singleLine="true"
-        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLogEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLogUser" />
 
     <CheckBox
         android:id="@+id/checkBoxStaySigned"
@@ -92,26 +77,23 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:text="@string/login_log_button"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxStaySigned" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewErorr" />
 
     <TextView
         android:id="@+id/textViewForgot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/text_blue_link"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:clickable="true"
         android:text="@string/login_forgot"
-        android:textColor="@color/best_blue"
-        android:textColorLink="@color/best_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
@@ -120,7 +102,7 @@
         android:id="@+id/divider1"
         style="@style/Divider"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:text="@string/login_no_acc"
         android:textColor="@color/black"
@@ -142,17 +124,28 @@
 
     <TextView
         android:id="@+id/textViewSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:clickable="true"
         android:text="@string/login_sign"
-        android:textColor="@color/best_blue"
-        android:textColorLink="@color/best_blue"
+        android:onClick="clickAbout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNoAccount" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewNoAccount"
+        style="@style/text_blue_link" />
+
+    <TextView
+        android:id="@+id/textViewErorr"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:text="Incorrect password or email!"
+        android:textColor="#D80C0C"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxStaySigned" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

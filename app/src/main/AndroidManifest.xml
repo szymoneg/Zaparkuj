@@ -4,31 +4,38 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_park_sm"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@drawable/logo_park_sm"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ParkIt">
+        android:theme="@style/Theme.ParkIt.NoActionBar">
+        <activity android:name=".SubmitActivity"></activity>
+        <activity android:name=".SelectSpotActivity">
+        </activity>
+        <activity android:name=".SelectDateActivity" />
+        <activity android:name=".SelectSectorActivity" />
+        <activity android:name=".ReservationsViewActivity" />
+        <activity android:name=".SelectCarActivity" />
         <activity
-            android:name=".RegisterActivity"
-            android:theme="@style/Theme.ParkIt.NoActionBar">
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".AddCarActivity" />
+        <activity android:name=".UserSettingActivity" />
+        <activity android:name=".ResetActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:theme="@style/Theme.ParkIt.NoActionBar">
-
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/Theme.ParkIt.NoActionBar"
-            android:windowSoftInputMode="adjustPan">
         </activity>
     </application>
 
