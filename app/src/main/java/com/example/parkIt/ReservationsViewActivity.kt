@@ -73,9 +73,6 @@ class ReservationsViewActivity : AppCompatActivity() {
                             dataJson,
                             Array<ReservationItem>::class.java
                         )
-                        runOnUiThread {
-                            Log.i("XDD", enums.get(1).carMark)
-                        }
                         arrReservations = enums;
                     } else {
                         Log.e("----Edit:", response.code.toString())

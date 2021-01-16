@@ -1,6 +1,7 @@
 package com.example.parkIt
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -66,6 +67,9 @@ class SubmitActivity : AppCompatActivity() {
 
         submitBtn.setOnClickListener {
             sendReservation()
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
         }
     }
 

@@ -1,26 +1,27 @@
 package com.example.parkIt
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
-import android.view.View
 import android.widget.Button
-import com.example.parkIt.data.JwtTokenData
-import com.google.gson.Gson
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.RequestBody.Companion.toRequestBody
-import org.json.JSONObject
 import java.io.IOException
+import com.example.parkIt.utilities.Regexes
 
 class ResetActivity : AppCompatActivity() {
-    private lateinit var username: String
-    private val mediaType = "application/json; charset=utf-8".toMediaType()
+    val reg = Regexes()
+    private lateinit var username: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reset)
         val buttonReset = findViewById<Button>(R.id.buttonReset)
+        username = findViewById(R.id.editTextResetUsername)
 
         buttonReset.setOnClickListener {
             sendResetPassword()
@@ -28,29 +29,34 @@ class ResetActivity : AppCompatActivity() {
     }
 
 
-    //TODO regex
-    fun sendResetPassword(){
-        val url = "http://10.0.2.2:8080/sendmail"
-        val client = OkHttpClient()
-        val rootObject = JSONObject()
-        rootObject.put("username", username)
+    fun sendResetPassword() {
+        if (reg.checkUsername(username.text.toString())) {
+            val uname = username.text.toString()
+            val url = "http://10.0.2.2:8080/sendmail/$uname"
+            val client = OkHttpClient()
 
-        val body = rootObject.toString().toRequestBody(mediaType)
-
-        val request = Request.Builder()
-            .url(url)
-            .post(body)
-            .build()
+            val request = Request.Builder()
+                .url(url)
+                .build()
 
 
-        client.newCall(request).enqueue(object : Callback {
-            override fun onResponse(call: Call, response: Response) {
-                Log.i("Response code: ", response.code.toString())
-            }
+            client.newCall(request).enqueue(object : Callback {
+                override fun onResponse(call: Call, response: Response) {
+                    Log.i("Response code: ", response.code.toString())
+                    Handler(Looper.getMainLooper()).post(Runnable {
+                        Toast.makeText(applicationContext, "password change!", Toast.LENGTH_SHORT).show()
+                    })
+                    val intent = Intent(this@ResetActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                }
 
-            override fun onFailure(call: Call, e: IOException) {
-                print(e.printStackTrace())
-            }
-        })
+                override fun onFailure(call: Call, e: IOException) {
+                    print(e.printStackTrace())
+                }
+            })
+        } else {
+            username.error = "Invalid username"
+            Log.e("---Error: ", "Regex error")
+        }
     }
 }

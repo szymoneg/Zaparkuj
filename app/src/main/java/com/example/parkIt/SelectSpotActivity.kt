@@ -39,8 +39,7 @@ class SelectSpotActivity : AppCompatActivity() {
         idSector = sharedPreferences.getInt("SectorID",2137)
 
         sendMessage(idSector, dateBegin, dateEnd)
-        //TODO sleep
-        Thread.sleep(500)
+        Thread.sleep(200)
 
         val exampleList = arrSpots
         recycle_spot.adapter = SpotsAdapter(exampleList.toList(),this)
@@ -72,9 +71,6 @@ class SelectSpotActivity : AppCompatActivity() {
                         dataJson,
                         Array<SpotItem>::class.java
                     )
-                    runOnUiThread {
-                        Log.i("XDD", enums.get(1).placeName)
-                    }
                     arrSpots = enums
                 }else{
                     Log.e("Error", response.code.toString())

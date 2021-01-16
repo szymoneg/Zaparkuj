@@ -29,12 +29,9 @@ class SelectCarActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("SP", Context.MODE_PRIVATE)
         username = sharedPreferences.getString("SearchKey","XD").toString();
         jwtToken = sharedPreferences.getString("Key","XD").toString();
-        Log.i("username: ", username)
 
         getCars()
-
-        //TODO do usuniecia sleep
-        Thread.sleep(1000)
+        Thread.sleep(500)
 
         val navBar = findViewById<TextView>(R.id.action_bar_text);
         navBar.text = "My cars"
@@ -63,7 +60,6 @@ class SelectCarActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
 
-            // TODO: 20.12.2020 regex to do
             override fun onResponse(call: Call, response: Response) {
                 response.use {
                     if (!response.isSuccessful) {

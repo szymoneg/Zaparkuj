@@ -19,9 +19,11 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.IOException
+import com.example.parkIt.utilities.Regexes
 
 
 class LoginActivity : AppCompatActivity() {
+    val reg = Regexes()
     private lateinit var username: EditText;
     private lateinit var password: EditText;
     private val mediaType = "application/json; charset=utf-8".toMediaType()
@@ -61,22 +63,23 @@ class LoginActivity : AppCompatActivity() {
         Toast.makeText(applicationContext, "login succesful!", Toast.LENGTH_SHORT).show()
         val value = token;
         val editor = sharedPreferences.edit()
-        editor.putString("Key",value)
-        editor.putString("SearchKey",searchKey)
+        editor.putString("Key", value)
+        editor.putString("SearchKey", searchKey)
         editor.apply()
         val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        finishAffinity()
         startActivity(intent)
     }
 
 
-    private fun loggin() = GlobalScope.async{
-        val username = username.text;
-        val password = password.text
+    private fun loggin() = GlobalScope.async {
         val url = "http://10.0.2.2:8080/login"
         val client = OkHttpClient()
         val rootObject = JSONObject()
-        rootObject.put("username", username.toString())
-        rootObject.put("password", password.toString())
+        rootObject.put("username", username.text.toString())
+        rootObject.put("password", password.text.toString())
 
         val body = rootObject.toString().toRequestBody(mediaType)
 
@@ -90,14 +93,23 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call, response: Response) {
                 if (response.code == 200) {
                     val json = Gson()
-                    val value = json.fromJson(response.body?.string(), JwtTokenData::class.java)
+                    val value =
+                        json.fromJson(response.body?.string(), JwtTokenData::class.java)
                     token = value.jwttoken;
                     searchKey = value.username;
                     Log.i("Response code: ", searchKey)
                     runOnUiThread {
                         goToMain()
                     }
-                }else{
+                } else if (response.code == 401) {
+                    token = "lololololo";
+                    searchKey = "niedziała";
+                    runOnUiThread {
+                        Log.i("Response code: ", searchKey)
+                        password.error = "Incorrect password"
+                        username.error = "Incorrect username"
+                    }
+                } else {
                     runOnUiThread {
                         erorrText.visibility = View.VISIBLE;
                     }

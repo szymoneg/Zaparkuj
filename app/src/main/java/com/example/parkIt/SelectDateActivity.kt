@@ -11,15 +11,12 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parkIt.data.CarItem
-import com.example.parkIt.data.SectorItem
-import com.example.parkIt.web.ConnectionAPI
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_select_date.*
 import kotlinx.android.synthetic.main.main_navbar.*
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
-import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -59,7 +56,7 @@ class SelectDateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_date)
 
-        val buttonCheck: Button = buttonCheck //TODO
+        val buttonCheck: Button = buttonCheck
         val btnDateFrom: Button = btnPickDateFrom
         val btnDateTo: Button = btnPickDateTo
         val navBar = action_bar_text
@@ -76,13 +73,12 @@ class SelectDateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
 
         val spinner = findViewById<Spinner>(R.id.carSpinner);
 
-        //TODO sleep
-        Thread.sleep(500)
+        Thread.sleep(200)
 
         navBar.text = address;
         val carSpinner: Spinner = carSpinner
         getCars();
-        Thread.sleep(1000)
+        Thread.sleep(200)
         val carAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
             this,
             R.layout.car_spinner_item,
@@ -119,10 +115,8 @@ class SelectDateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             Log.i("----newDo", dateEndoo.toString());
             sendMessage(idParking.toInt(),dateStart,dateEndoo);
 
-            //TODO sleep
             Thread.sleep(200);
 
-            val json = Gson()
             val editor = sharedPreferences.edit()
             Log.i("lolo",arrSectors)
             editor.putString("Sectors", arrSectors)
@@ -163,7 +157,6 @@ class SelectDateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                 e.printStackTrace()
             }
 
-            // TODO: 20.12.2020 regex to do
             override fun onResponse(call: Call, response: Response) {
                 response.use {
                     if (!response.isSuccessful) {
@@ -177,9 +170,6 @@ class SelectDateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                             dataJson,
                             Array<CarItem>::class.java
                         )
-                        runOnUiThread {
-                            Log.i("XDD", enums.get(1).mark)
-                        }
                         arrCars = enums
                     } else {
                         Log.e("----Edit:", response.code.toString())
@@ -210,15 +200,13 @@ class SelectDateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                 Log.i("Response code: ", response.code.toString())
                 if (response.code.toString() == "200"){
                     val dataJson = response.body?.string();
-                    val gson = Gson()
                     val enums = dataJson;
                     if (enums != null) {
                         arrSectors = enums
-                    };
+                    }
                     runOnUiThread {
                         Log.i("XDD", enums.toString())
                     }
-                    //arrSectors = enums
                 }else{
                     Log.e("Error", response.code.toString())
                 }

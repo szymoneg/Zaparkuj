@@ -4,10 +4,15 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -45,8 +50,16 @@ class AddCarActivity : AppCompatActivity() {
         jwtToken = sharedPreferences.getString("Key", "XD").toString()
         username = sharedPreferences.getString("SearchKey", "XD").toString()
     }
-    //TODO regex
-    fun postAddNewCar() {
+
+    private fun succesAdd(){
+        Handler(Looper.getMainLooper()).post(Runnable {
+            Toast.makeText(applicationContext, "car add!", Toast.LENGTH_SHORT).show()
+        })
+        val intent = Intent(this@AddCarActivity, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun postAddNewCar() = GlobalScope.async {
         val username = username;
         val brand = brand.text;
         val model = model.text;
@@ -68,15 +81,22 @@ class AddCarActivity : AppCompatActivity() {
 
         client.newCall(request).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
-                //TODO obsuga kodów
-                Log.i("Response code:   ", response.code.toString())
-                runOnUiThread {
-                    Log.i("Dodano", "dodano samochód")
+                if (response.code == 201){
+                    runOnUiThread {
+                        succesAdd()
+                    }
+                }else if (response.code == 400){
+                    runOnUiThread {
+                        Toast.makeText(applicationContext, "incorrect value", Toast.LENGTH_SHORT).show()
+                    }
                 }
+                Log.i("Response code:   ", response.code.toString())
             }
 
             override fun onFailure(call: Call, e: IOException) {
-                TODO("Not yet implemented")
+                runOnUiThread {
+                    Toast.makeText(applicationContext, "cannot connect with server", Toast.LENGTH_SHORT).show()
+                }
             }
         })
     }

@@ -34,8 +34,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var username: TextView
     private lateinit var jwtToken: String;
 
-    //    private lateinit var idParking: String
-//    private lateinit var address: String
     private var arrayList = ArrayList<OverlayItem>()
     private var map: MapView? = null
 
@@ -66,7 +64,6 @@ class MainActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
 
-            // TODO: 20.12.2020 regex to do
             override fun onResponse(call: Call, response: Response) {
                 response.use {
                     if (!response.isSuccessful) {

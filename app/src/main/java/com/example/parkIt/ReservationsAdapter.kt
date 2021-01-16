@@ -1,5 +1,6 @@
 package com.example.parkIt
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.parkIt.data.ReservationItem
 import com.example.parkIt.web.ConnectionAPI
 import kotlinx.android.synthetic.main.reservations_item.view.*
-import java.security.Timestamp
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class ReservationsAdapter(private val reservationList: Array<ReservationItem>) :
@@ -39,13 +37,12 @@ class ReservationsAdapter(private val reservationList: Array<ReservationItem>) :
         holder.dateEnd.text = date
         holder.image.setImageResource(R.drawable.ic_remove)
 
-        holder.image.setOnClickListener {
+        holder.image.setOnClickListener { v ->
             conn.deleteReservation(reservationList[position].idReservation)
-            //TODO do usunieca sleep
-            Thread.sleep(500)
-            //TODO odswiezanie rezerwacji
+            Thread.sleep(200)
             notifyItemRemoved(position)
-            notifyItemRangeChanged(position, getItemCount());
+            val intent = Intent(v.context, ReservationsViewActivity::class.java)
+            v.context.startActivity(intent)
         }
     }
 
